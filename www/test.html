@@ -31,37 +31,27 @@
 
     <script>
       window.onload = function(){
-        // steroids.view.navigationBar.update({overrideBackButton: true});
+
         var encodedData = window.location.search.split("=")[1];
         var data = JSON.parse(decodeURIComponent(encodedData));
         $('h1').html("Welcome back " + data["first_name"] + "!");
 
-        // $('form').on('submit', function(){
+        var logoutButton = new steroids.buttons.NavigationBarButton();
+        logoutButton.title = "logout";
+        logoutButton.onTap = function(){ logout() }
 
-        //   $.support.cors = true;
-        //   $.ajax({
-        //     headers: {          
-        //       Accept: "application/json; charset=utf-8",         
-        //       "Content-Type": "application/json; charset=utf-8"
-        //     },
-        //     url: "http://stidentify.herokuapp.com/api/matches",
-        //     async: false,
-        //     type: "POST",
-        //     data: JSON.stringify({email:$("#email").val(), password:$("#password").val()}),
-        //     dataType: "json",
-        //     crossDomain: true,
-        //     xhrFields: {
-        //       withCredentials: true
-        //     },
-        //     success: function(data) {
-        //       if (data["response"] = "success") {
-        //         redirect(data);
-        //       } else {
-        //         alert("Try again!");
-        //       }
-        //     }
-        //   })
-        }
+        steroids.view.navigationBar.update({
+          overrideBackButton: true,
+          buttons: {left: [logoutButton]}
+        });
+
+        steroids.view.navigationBar.show();
+      }
+
+      function logout() {
+        steroids.layers.popAll();
+        // steroids.view.navigationBar.hide();
+      }
     
     </script>
     

@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="/stylesheets/application.css" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,300italic,400,700|Julius+Sans+One|Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
 
   <script src="/javascripts/onerror.js"></script>
   <script src="/javascripts/console.log.js"></script>
@@ -18,17 +19,21 @@
 
   <script src="/javascripts/application.js"></script>
 </head>
-<body>
+<body class="signin-view">
   <div class="content-padded">
 
-    <h1>Welcome to stidentify</h1>
+    <center>
+    <h1 class="title-stid">STId</h1>
+    <h3 class="tagline">Introducing verifiably safe sex to the twenty-first century.</h3>
     
     <form>
       <input name="email" id="email" placeholder="email address" type="text" value="brad@gmail.com">
       <input name="password" id="password" placeholder="password" type="password" value="bradley123">
-      <input name="commit" value="sign in" type="submit" id="submit">
-
+<!--       <input name="email" id="email" placeholder="email address" type="text">
+      <input name="password" id="password" placeholder="password" type="password"> -->
+      <input name="commit" value="SIGN IN" type="submit" id="submit" class="signin-submit">
     </form>
+    </center>
 
 
   </div>
@@ -41,7 +46,7 @@
 
     function redirect(data) {
       var testView = new steroids.views.WebView( { location: "http://localhost/test.html?data=" + encodeParams(data) } );
-
+      
       var myAnimation = new steroids.Animation({
         transition: "curlUp",
         duration: 0.2,
@@ -53,13 +58,17 @@
       steroids.layers.push( {
         view: testView,
         keepLoading: false,
-        navigationBar: true,
+        navigationBar: false,
         tabBar: false,
         animation: myAnimation
       });
     }
 
+
+
     window.onload = function(){
+
+      steroids.view.navigationBar.hide();
 
       $('form').on('submit', function(){
 

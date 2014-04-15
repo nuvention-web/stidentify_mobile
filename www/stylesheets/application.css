@@ -10,3 +10,85 @@ input, textarea, [contenteditable] * {
 .content-padded {
   padding: 10px;
 }
+
+.signin-view {
+  background-color: #B61F1F;
+}
+
+
+#email, #password, .signin-submit{
+  background-color: white !important;
+  display: inline-block;
+  padding: 16px 10px;
+  margin: 0px auto !important;
+  width: 70vw;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  border-color: rgba(0,0,0, .135);
+  background-color: transparent;
+  color: #999;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+/*  height: 6vh;
+*/}
+
+input::-webkit-input-placeholder {
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input::-moz-placeholder {
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input:-moz-placeholder {   /* Older versions of Firefox */
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input:-ms-input-placeholder { 
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+
+
+.signin-submit {
+  color: #B61F1F;
+  margin-top: 20px !important; 
+  width: 77vw;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 95%;
+}
+
+.title-stid {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 66px;
+  position: relative;
+  margin: 0.25em auto 0.15em auto;
+}
+
+.tagline {
+  color: white;
+  margin-bottom: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  width: 80vw !important;
+}
