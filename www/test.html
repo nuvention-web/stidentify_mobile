@@ -18,15 +18,17 @@
 
   <script src="/javascripts/application.js"></script>
 </head>
-<body>
+<body class="compare-view">
   <div class="content-padded">
 
-    <h1></h1>
+    <h1 class="title-welcome"></h1>
 
     <form>
-      <h3>Input the other person's STID below to compare:</h3>
-      <input name="stid" id="stid" placeholder="STID (e.g. 2a45j4)" type="text">
-      <input name="commit" value="submit" type="submit" id="submit">
+      <h3 class="input-stid">Input the other person's STID below to compare:</h3>
+      <center>
+        <input name="stid" id="stid" placeholder="STID (e.g. 2a45j4)" type="text">
+        <input name="commit" value="submit" type="submit" id="submit" class="compare-submit">
+      </center>
     </form>
 
     <script>
