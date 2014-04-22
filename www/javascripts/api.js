@@ -48,8 +48,34 @@ function register(options){
   })
 }
 
+//example:
+// register({
+//   firstName: [insert]
+//   lastName: [insert],
+//   email: [insert] ,
+//   password: [insert], 
+//   passwordConfirmation: [insert]
+// })
+
+
+function testResults(data) {
+  return genericAPICall(options, "users/tests", "POST", function(data) { return data } )
+}
+
+//example:
+// testResults({
+//   chlamydiaResult: [true or false]
+//   gonorrheaResult: [true or false],
+//   hepatitisBResult: [true or false] ,
+//   hepatitisCResult: [true or false], 
+//   herpes1Result: [true or false] ,
+//   herpes2Result: [true or false] ,
+//   hivResult: [true or false] ,
+//   syphilisResult: [true or false]
+// })
+
 function encodeParams(data){
-  return encodeURIComponent(JSON.stringify(data))
+  return encodeURIComponent(JSON.stringify(data));
 }
 
 function redirect(data) {
