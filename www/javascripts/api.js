@@ -39,7 +39,7 @@ function compare(options){
 }
 
 function register(options){
-  return genericAPICall(options, "users", "POST" function(data){
+  return genericAPICall(options, "users", "POST", function(data){
     if (data["error"] == "none") {
       redirect(data)
     } else {
