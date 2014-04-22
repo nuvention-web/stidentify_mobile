@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <title>My Steroids App</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+  <script src="/javascripts/console.log.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <script src="/javascripts/application.js"></script>
+  <script src="/javascripts/api.js"></script>
+</head>
+<body class="compare-view">
+
+  <div class="navbar" style="width:100%;padding:15px 10px!important;background-color:#B61F1F">
+    <a style="font-size:22px;color:white;width:30%;">logout</a>
+  </div>
+
+  <div class="compare-view-content" style="padding:10px;">
+
+      <h3 class="input-stid">Thanks for adding your test results!</h3>
+
+      <center>
+
+        <a href="http://localhost/index.html"><button class="add-results">back to compare</button></a>
+
+      </center>
+
+  </div>
+
+  <script>
+    // document.addEventListener("deviceready", onDeviceReady, false);
+
+    // function onDeviceReady(){
+
+    //   var encodedData = window.location.search.split("=")[1];
+    //   var data = JSON.parse(decodeURIComponent(encodedData));
+    //   var access_token = data["access_token"];
+
+    //   $('h1').html("Welcome back " + data["first_name"] + "!");
+
+    //   $(".compare-submit").on("click", function(e){
+    //     e.preventDefault();
+    //     var status = compare({access_token: access_token, stid: $('#stid').val()});
+
+    //     if (status == "match"){
+    //       $(".compare-view-content").html("<center><h1 style='font-size:200px;color:green;position:relative;bottom:60px'>✓</h1><p style='position:relative;bottom:120px;font-size:40px'>it's a match!</p></center>");
+    //     } else if (status == "caution") {
+    //       $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#F2C616;position:relative;bottom:100px'><strong>?</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution!</strong><br/>someone's tests are out of date</p></center>");
+    //     } else if (status == "nonmatch") {
+    //       $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#B61F1F;position:relative;bottom:100px'><strong>!</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution</strong><br/>you are not a match!</p></center>");
+    //     } else {
+    //       $(".compare-view-content").html("<center><p>that's not a valid STID. Click 'back' to try again.</p></center>")
+    //     }
+
+    //     $('.navbar a').html("back");
+    //     $('.navbar a').on("click", function(){
+    //       location.reload();
+    //     })
+
+    //   });  
+     
+
+
+
+    //   var logoutButton = new steroids.buttons.NavigationBarButton();
+    //   logoutButton.title = "logout";
+    //   logoutButton.onTap = function(){ logout() }
+
+    //   steroids.view.navigationBar.update({
+    //     overrideBackButton: true,
+    //     buttons: {left: [logoutButton]}
+    //   });
+
+    //   steroids.view.navigationBar.show();
+    // }
+
+    function logout() {
+      steroids.layers.popAll();
+      // steroids.view.navigationBar.hide();
+    }
+  
+  </script>
+    
+    
+</body>
+</html>

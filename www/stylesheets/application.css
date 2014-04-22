@@ -184,6 +184,32 @@ input:-ms-input-placeholder {
   height: 95%;
 }
 
+.add-results {
+  color: white !important; 
+  width: 77vw;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  height: 95%;
+  background-color: #B61F1F !important;
+  display: inline-block;
+  padding: 16px 10px;
+  margin: 0px auto !important;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  border-color: rgba(0,0,0, .135);
+  background-color: transparent;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+
 .input-stid {
   color: #6E6E6E;
   font-family: 'Roboto', sans-serif;
