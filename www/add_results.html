@@ -22,7 +22,7 @@
 <body class="compare-view">
 
   <div class="navbar" style="width:100%;padding:15px 10px!important;background-color:#B61F1F">
-    <a style="font-size:22px;color:white;width:30%;">logout</a>
+    <a style="font-size:22px;color:white;width:30%;text-decoration:none" href="http://localhost/match.html">back</a>
   </div>
 
   <div class="compare-view-content" style="padding:10px;">
@@ -35,13 +35,13 @@
 
           <p>Gonorrhea<br>Positive<input name="Gonorrhea" id="gonorrheaResult" value="true"  type="radio"><br>Negative<input name="Gonorrhea" id="gonorrheaResult" value="false" type="radio"><br></p>
 
-          <p>Hepatitis B<br>Positive<input name="Hepatitis B" id="hepatitisBResult" value="true"  type="radio"><br>Negative<input name="Hepatitis B" id="hepatitisBResult" value="false" type="radio"><br></p>
+          <p>Hepatitis B<br>Positive<input name="HepatitisB" id="hepatitisBResult" value="true"  type="radio"><br>Negative<input name="HepatitisB" id="hepatitisBResult" value="false" type="radio"><br></p>
 
-          <p>Hepatitis C<br>Positive<input name="Hepatitis C" id="hepatitisCResult" value="true"  type="radio"><br>Negative<input name="Hepatitis C" id="hepatitisCResult" value="false" type="radio"><br></p>
+          <p>Hepatitis C<br>Positive<input name="HepatitisC" id="hepatitisCResult" value="true"  type="radio"><br>Negative<input name="HepatitisC" id="hepatitisCResult" value="false" type="radio"><br></p>
 
-          <p>Herpes I<br>Positive<input name="Herpes I" id="herpes1Result" value="true"  type="radio"><br>Negative<input name="Herpes I" id="herpes1Result" value="false" type="radio"><br></p>
+          <p>Herpes I<br>Positive<input name="Herpes1" id="herpes1Result" value="true"  type="radio"><br>Negative<input name="Herpes1" id="herpes1Result" value="false" type="radio"><br></p>
 
-          <p>Herpes II<br>Positive<input name="Herpes II" id="herpes2Result" value="true"  type="radio"><br>Negative<input name="Herpes II" id="herpes2Result" value="false" type="radio"><br></p>
+          <p>Herpes II<br>Positive<input name="Herpes2" id="herpes2Result" value="true"  type="radio"><br>Negative<input name="Herpes2" id="herpes2Result" value="false" type="radio"><br></p>
 
           <p>HIV<br>Positive<input name="HIV" id="hivResult" value="true"  type="radio"><br>Negative<input name="HIV" id="hivResult" value="false" type="radio"><br></p>
 
@@ -53,62 +53,41 @@
 
       <center>
 
-        <a href="http://localhost/thanks.html"><button class="add-results">submit</button></a>
+        <!-- <a href="http://localhost/thanks.html"> -->
+          <button class="add-results">submit</button>
+        <!-- </a> -->
+
 
       </center>
 
   </div>
 
   <script>
-    // document.addEventListener("deviceready", onDeviceReady, false);
+    
+    document.addEventListener("deviceready", onDeviceReady, false);
 
-    // function onDeviceReady(){
+    var encodedData = window.location.search.split("=")[1];
 
-    //   var encodedData = window.location.search.split("=")[1];
-    //   var data = JSON.parse(decodeURIComponent(encodedData));
-    //   var access_token = data["access_token"];
+    function onDeviceReady(){
+      $(".navbar a").attr("href", "http://localhost/match.html?data=" + encodedData);
 
-    //   $('h1').html("Welcome back " + data["first_name"] + "!");
+      $("button").on("click", function(){
+        testResults({
+          chlamydiaResult: $("input[name=Chlamydia]:checked").val(),
+          gonorrheaResult: $("input[name=Gonorrhea]:checked").val(),
+          hepatitisBResult: $("input[name=HepatitisB]:checked").val(),
+          hepatitisCResult: $("input[name=HepatitisC]:checked").val(), 
+          herpes1Result: $("input[name=Herpes1]:checked").val(),
+          herpes2Result: $("input[name=Herpes2]:checked").val(),
+          hivResult: $("input[name=HIV]:checked").val(),
+          syphilisResult: $("input[name=Syphilis]:checked").val()
+        })
 
-    //   $(".compare-submit").on("click", function(e){
-    //     e.preventDefault();
-    //     var status = compare({access_token: access_token, stid: $('#stid').val()});
+        var encodedData = window.location.search.split("=")[1]
 
-    //     if (status == "match"){
-    //       $(".compare-view-content").html("<center><h1 style='font-size:200px;color:green;position:relative;bottom:60px'>✓</h1><p style='position:relative;bottom:120px;font-size:40px'>it's a match!</p></center>");
-    //     } else if (status == "caution") {
-    //       $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#F2C616;position:relative;bottom:100px'><strong>?</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution!</strong><br/>someone's tests are out of date</p></center>");
-    //     } else if (status == "nonmatch") {
-    //       $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#B61F1F;position:relative;bottom:100px'><strong>!</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution</strong><br/>you are not a match!</p></center>");
-    //     } else {
-    //       $(".compare-view-content").html("<center><p>that's not a valid STID. Click 'back' to try again.</p></center>")
-    //     }
+        document.location.href = "http://localhost/thanks.html?data=" + encodedData
+      });
 
-    //     $('.navbar a').html("back");
-    //     $('.navbar a').on("click", function(){
-    //       location.reload();
-    //     })
-
-    //   });  
-     
-
-
-
-    //   var logoutButton = new steroids.buttons.NavigationBarButton();
-    //   logoutButton.title = "logout";
-    //   logoutButton.onTap = function(){ logout() }
-
-    //   steroids.view.navigationBar.update({
-    //     overrideBackButton: true,
-    //     buttons: {left: [logoutButton]}
-    //   });
-
-    //   steroids.view.navigationBar.show();
-    // }
-
-    function logout() {
-      steroids.layers.popAll();
-      // steroids.view.navigationBar.hide();
     }
   
   </script>

@@ -22,7 +22,7 @@
 <body class="compare-view">
 
   <div class="navbar" style="width:100%;padding:15px 10px!important;background-color:#B61F1F">
-    <a style="font-size:22px;color:white;width:30%;">logout</a>
+    <a style="font-size:22px;color:white;width:30%;text-decoration:none" href="http://localhost/match.html">back</a>
   </div>
 
   <div class="compare-view-content" style="padding:10px;">
@@ -31,16 +31,21 @@
 
       <center>
 
-        <a href="http://localhost/index.html"><button class="add-results">back to compare</button></a>
+        <a href="http://localhost/match.html" class="link-to-match"><button class="add-results">back to compare</button></a>
 
       </center>
 
   </div>
 
   <script>
-    // document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("deviceready", onDeviceReady, false);
 
-    // function onDeviceReady(){
+    function onDeviceReady(){
+
+      var encodedData = window.location.search.split("=")[1];
+
+      $(".link-to-match").attr("href", "http://localhost/match.html?data=" + encodedData);
+    }
 
     //   var encodedData = window.location.search.split("=")[1];
     //   var data = JSON.parse(decodeURIComponent(encodedData));

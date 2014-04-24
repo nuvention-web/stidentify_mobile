@@ -22,7 +22,7 @@
 <body class="compare-view">
 
   <div class="navbar" style="width:100%;padding:15px 10px!important;background-color:#B61F1F">
-    <a style="font-size:22px;color:white;width:30%;">logout</a>
+    <a style="font-size:22px;color:white;width:30%">logout</a>
   </div>
 
   <div class="compare-view-content" style="padding:10px;">
@@ -37,13 +37,10 @@
         </center>
       </form>
 
-  </div>
-
-  <div>
-    
-    <center>
-        <a href="http://localhost/add_results.html"><button class="add-results">add test results</button></a>
-    </center>
+      <center>
+        <br/>
+        <a href="http://localhost/add_results.html?data=" class="link-to-results"><button class="add-results">add test results</button></a>
+      </center>
 
   </div>
 
@@ -53,6 +50,9 @@
     function onDeviceReady(){
 
       var encodedData = window.location.search.split("=")[1];
+
+      $(".link-to-results").attr("href", "http://localhost/add_results.html?data=" + encodedData);
+
       var data = JSON.parse(decodeURIComponent(encodedData));
       var access_token = data["access_token"];
 
