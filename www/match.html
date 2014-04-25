@@ -18,6 +18,7 @@
 
   <script src="/javascripts/application.js"></script>
   <script src="/javascripts/api.js"></script>
+  <script src="/javascripts/barcodescanner.js"></script>
 </head>
 <body class="compare-view">
 
@@ -29,14 +30,24 @@
 
     <h1 class="title-welcome"></h1>
 
-      <form>
+    <div class="qr-code"></div>
+
+    <center>
+
+    <button id="barcode" class="compare-submit">Scan STID</button>
+    <button id="encode" class="compare-submit">Show STID</button>
+
+    </center>
+
+    <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?data=Example&amp;size=100x100" alt="" title="" />-->
+     <!--  <form>
         <h3 class="input-stid">Input the other person's STID below to compare:</h3>
         <center>
           <input name="stid" id="stid" placeholder="STID (e.g. 2a45j4)" type="text" autocorrect="off" autocapitalize="off">
           <input name="commit" value="submit" type="submit" id="submit" class="compare-submit">
         </center>
       </form>
-
+ -->
       <center>
         <br/>
         <a href="http://localhost/add_results.html?data=" class="link-to-results"><button class="add-results">add test results</button></a>
@@ -49,35 +60,96 @@
 
     function onDeviceReady(){
 
+      $("#barcode").on("click", function(){
+        cordova.plugins.barcodeScanner.scan(
+          function (result) {
+              var status = compare({access_token: access_token, stid: result.text});
+
+              if (status == "match"){
+                $(".compare-view-content").html("<center><h1 style='font-size:200px;color:green;position:relative;bottom:60px'>✓</h1><p style='position:relative;bottom:120px;font-size:40px'>it's a match!</p></center>");
+              } else if (status == "caution") {
+                $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#F2C616;position:relative;bottom:100px'><strong>?</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution!</strong><br/>someone's tests are out of date</p></center>");
+              } else if (status == "nonmatch") {
+                $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#B61F1F;position:relative;bottom:100px'><strong>!</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution</strong><br/>you are not a match!</p></center>");
+              } else {
+                $(".compare-view-content").html("<center><p>that's not a valid STID. Click 'back' to try again.</p></center>")
+              }
+
+              $('.navbar a').html("back");
+              $('.navbar a').on("click", function(){
+                location.reload();
+              })
+              // alert("We got a barcode\n" +
+              //       "Result: " + result.text + "\n" +
+              //       "Format: " + result.format + "\n" +
+              //       "Cancelled: " + result.cancelled);
+          }, 
+          function (error) {
+              alert("Scanning failed: " + error);
+          }
+        );
+      });
+
+        // $("#scanner").on("click", function(){
+        //   cordova.plugins.barco
+        // })
+  
+      var encodedData = window.location.search.split("=")[1];
+      var data = JSON.parse(decodeURIComponent(encodedData));
+    
+      $("#encode").on("click", function(){
+      $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
+
+        //  var status = compare({access_token: access_token, stid: data["stid"]});
+
+        //    if (status == "match"){
+        //   $(".compare-view-content").html("<center><h1 style='font-size:200px;color:green;position:relative;bottom:60px'>✓</h1><p style='position:relative;bottom:120px;font-size:40px'>it's a match!</p></center>");
+        // } else if (status == "caution") {
+        //   $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#F2C616;position:relative;bottom:100px'><strong>?</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution!</strong><br/>someone's tests are out of date</p></center>");
+        // } else if (status == "nonmatch") {
+        //   $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#B61F1F;position:relative;bottom:100px'><strong>!</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution</strong><br/>you are not a match!</p></center>");
+        // } else {
+        //   $(".compare-view-content").html("<center><p>that's not a valid STID. Click 'back' to try again.</p></center>")
+        // }
+
+        // $('.navbar a').html("back");
+        // $('.navbar a').on("click", function(){
+        //   location.reload();
+        // })
+      });
+
+      
+        
+
       var encodedData = window.location.search.split("=")[1];
 
       $(".link-to-results").attr("href", "http://localhost/add_results.html?data=" + encodedData);
 
-      var data = JSON.parse(decodeURIComponent(encodedData));
+      
       var access_token = data["access_token"];
 
       $('h1').html("Welcome back " + data["first_name"] + "!");
 
-      $(".compare-submit").on("click", function(e){
-        e.preventDefault();
-        var status = compare({access_token: access_token, stid: $('#stid').val()});
+      // $(".compare-submit").on("click", function(e){
+      //   e.preventDefault();
+      //   var status = compare({access_token: access_token, stid: $('#stid').val()});
 
-        if (status == "match"){
-          $(".compare-view-content").html("<center><h1 style='font-size:200px;color:green;position:relative;bottom:60px'>✓</h1><p style='position:relative;bottom:120px;font-size:40px'>it's a match!</p></center>");
-        } else if (status == "caution") {
-          $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#F2C616;position:relative;bottom:100px'><strong>?</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution!</strong><br/>someone's tests are out of date</p></center>");
-        } else if (status == "nonmatch") {
-          $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#B61F1F;position:relative;bottom:100px'><strong>!</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution</strong><br/>you are not a match!</p></center>");
-        } else {
-          $(".compare-view-content").html("<center><p>that's not a valid STID. Click 'back' to try again.</p></center>")
-        }
+        // if (status == "match"){
+        //   $(".compare-view-content").html("<center><h1 style='font-size:200px;color:green;position:relative;bottom:60px'>✓</h1><p style='position:relative;bottom:120px;font-size:40px'>it's a match!</p></center>");
+        // } else if (status == "caution") {
+        //   $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#F2C616;position:relative;bottom:100px'><strong>?</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution!</strong><br/>someone's tests are out of date</p></center>");
+        // } else if (status == "nonmatch") {
+        //   $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#B61F1F;position:relative;bottom:100px'><strong>!</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution</strong><br/>you are not a match!</p></center>");
+        // } else {
+        //   $(".compare-view-content").html("<center><p>that's not a valid STID. Click 'back' to try again.</p></center>")
+        // }
 
-        $('.navbar a').html("back");
-        $('.navbar a').on("click", function(){
-          location.reload();
-        })
+        // $('.navbar a').html("back");
+        // $('.navbar a').on("click", function(){
+        //   location.reload();
+        // })
 
-      });  
+      // });  
      
 
 

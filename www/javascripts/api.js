@@ -17,7 +17,7 @@ function genericAPICall(options, path, method, callback) {
       withCredentials: true
     },
     success: function(data) {
-      if (data["response"] = "success") {
+      if (data["response"] == "success") {
         response =  callback(data);
       } else {
         alert("Try again!");

@@ -67,12 +67,14 @@
     document.addEventListener("deviceready", onDeviceReady, false);
 
     var encodedData = window.location.search.split("=")[1];
+    var data = JSON.parse(decodeURIComponent(encodedData));
 
     function onDeviceReady(){
       $(".navbar a").attr("href", "http://localhost/match.html?data=" + encodedData);
 
       $("button").on("click", function(){
         testResults({
+          access_token: data["access_token"],
           chlamydiaResult: $("input[name=Chlamydia]:checked").val(),
           gonorrheaResult: $("input[name=Gonorrhea]:checked").val(),
           hepatitisBResult: $("input[name=HepatitisB]:checked").val(),
@@ -85,7 +87,7 @@
 
         var encodedData = window.location.search.split("=")[1]
 
-        document.location.href = "http://localhost/thanks.html?data=" + encodedData
+        document.location.href = "http://localhost/thanks.html?data=" + encodedData;
       });
 
     }
