@@ -4,7 +4,7 @@
 steroids.config.name = "helloWorld"
 
 # -- Initial Location --
-steroids.config.location = "http://localhost/index.html"
+steroids.config.location = "http://localhost/add_results.html"
 
 # -- Tab Bar --
 # steroids.config.tabBar.enabled = true

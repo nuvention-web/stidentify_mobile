@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf8">
@@ -25,13 +24,25 @@
     <a style="font-size:22px;color:white;width:30%;text-decoration:none" href="http://localhost/match.html">back</a>
   </div>
 
-  <div class="compare-view-content" style="padding:10px;">
+  <div class="compare-view-content" style="padding:0px;margin:0px;border:0px;">
 
       <form>
         <h3 class="input-stid">Add your own test results below</h3>
-          <center>
+        <div class="test-results">
+          <p>Chlamydia</p>
+          <div class="toggle">
+            <label>+<input name="Chlamydia" id="chlamydiaResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label>-<input name="Chlamydia" id="chlamydiaResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label>Not Tested<input name="Chlamydia" id="chlamydiaResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
 
-          <p>Chlamydia<br>Positive<input name="Chlamydia" id="chlamydiaResult" value="true"  type="radio"><br>Negative<input name="Chlamydia" id="chlamydiaResult" value="false" type="radio"><br></p>
+          <center>
 
           <p>Gonorrhea<br>Positive<input name="Gonorrhea" id="gonorrheaResult" value="true"  type="radio"><br>Negative<input name="Gonorrhea" id="gonorrheaResult" value="false" type="radio"><br></p>
 
