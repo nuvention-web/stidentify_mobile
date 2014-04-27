@@ -59,7 +59,7 @@ function register(options){
 
 
 function testResults(options) {
-  return genericAPICall(options, "users/tests", "POST", function(data) { alert( data["tv"] )} )
+  return genericAPICall(options, "users/tests", "POST", function(data) { return data["response"]} )
 }
 
 //example:

@@ -73,7 +73,7 @@
       $(".navbar a").attr("href", "http://localhost/match.html?data=" + encodedData);
 
       $("button").on("click", function(){
-        testResults({
+        response = testResults({
           access_token: data["access_token"],
           chlamydiaResult: $("input[name=Chlamydia]:checked").val(),
           gonorrheaResult: $("input[name=Gonorrhea]:checked").val(),
@@ -85,9 +85,11 @@
           syphilisResult: $("input[name=Syphilis]:checked").val()
         })
 
+        alert(response);
+
         var encodedData = window.location.search.split("=")[1]
 
-        document.location.href = "http://localhost/thanks.html?data=" + encodedData;
+        // document.location.href = "http://localhost/thanks.html?data=" + encodedData;
       });
 
     }
