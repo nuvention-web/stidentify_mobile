@@ -24,10 +24,38 @@ input, textarea, [contenteditable] * {
   border: 0px;
   overflow: auto;
   float: left;
-  width: calc(80%/3);
-  height: 10em;
-  background-color: #b61f1f;
+  width: calc(100% / 3);
+  height: 33vw;
+  background-color: grey;
   color: white;
+  text-align: center;
+}
+
+.toggle label {
+
+}
+
+.toggle label span {
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+  line-height: 33vw;
+  cursor: pointer;
+  height: 33vw;
+}
+
+.toggle label input {
+    display:none;
+    height: 33vw;
+    width: calc(100% / 3);
+}
+
+.toggle .input-checked {
+  background-color: #B61F1F;
+}
+
+.inputty {
+  background-color: #B61F1F;
 }
 
 .clear-thing{

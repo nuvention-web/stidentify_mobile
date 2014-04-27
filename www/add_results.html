@@ -20,7 +20,7 @@
 </head>
 <body class="compare-view">
 
-  <div class="navbar" style="width:100%;padding:15px 10px!important;background-color:#B61F1F">
+  <div class="navbar" style="width:100%;padding-bottom:10px;padding-top:10px;background-color:#B61F1F">
     <a style="font-size:22px;color:white;width:30%;text-decoration:none" href="http://localhost/match.html">back</a>
   </div>
 
@@ -31,13 +31,13 @@
         <div class="test-results">
           <p>Chlamydia</p>
           <div class="toggle">
-            <label>+<input name="Chlamydia" id="chlamydiaResult" value="true"  type="radio"></label>
+            <label><span>+</span><input name="Chlamydia" id="chlamydiaResult" value="true"  type="radio"></label>
           </div>
           <div class="toggle">
-            <label>-<input name="Chlamydia" id="chlamydiaResult" value="false" type="radio"></label>
+            <label><span>-</span><input name="Chlamydia" id="chlamydiaResult" value="false" type="radio"></label>
           </div>
           <div class="toggle">
-            <label>Not Tested<input name="Chlamydia" id="chlamydiaResult" value="null" type="radio"></label>
+            <label><span>Not Tested</span><input name="Chlamydia" id="chlamydiaResult" value="null" type="radio"></label>
           </div>
           <div class="clear-thing"></div>
         </div>
@@ -83,8 +83,13 @@
     function onDeviceReady(){
       $(".navbar a").attr("href", "http://localhost/match.html?data=" + encodedData);
 
+      $('label').click(function(){
+        $(this).parent('.toggle').addClass('inputty');
+        $(this).parent('.toggle').siblings('.toggle').removeClass('inputty');
+      });
+
       $("button").on("click", function(){
-        testResults({
+          testResults({
           access_token: data["access_token"],
           chlamydiaResult: $("input[name=Chlamydia]:checked").val(),
           gonorrheaResult: $("input[name=Gonorrhea]:checked").val(),
@@ -102,6 +107,16 @@
       });
 
     }
+
+    // $('label').on('click', function(){
+    //   $(this).parent('.toggle').addClass('input-checked');
+    // })
+
+    // $("button").on("click", function(){
+    //   alert();
+    //   // $(this).parent('.toggle').addClass('inputty');
+    //   // $(this).parent('.toggle').siblings('.toggle').children('label').children('span').removeClass('input-checked');
+    // });
   
   </script>
     
