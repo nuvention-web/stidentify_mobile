@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf8">
@@ -21,17 +20,31 @@
 </head>
 <body class="compare-view">
 
-  <div class="navbar" style="width:100%;padding:15px 10px!important;background-color:#B61F1F">
+  <div class="navbar" style="width:100%;padding-bottom:10px;padding-top:10px;background-color:#B61F1F">
     <a style="font-size:22px;color:white;width:30%;text-decoration:none" href="http://localhost/match.html">back</a>
   </div>
 
-  <div class="compare-view-content" style="padding:10px;">
+  <div class="compare-view-content" style="padding:0px;margin:0px;border:0px;">
 
       <form>
         <h3 class="input-stid">Add your own test results below</h3>
-          <center>
+        <center>
+        <div class="test-results" style="width:100%">
+          <p>Chlamydia</p>
+          <div class="toggle">
+            <label><span>+</span><input name="Chlamydia" id="chlamydiaResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span>-</span><input name="Chlamydia" id="chlamydiaResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span>Not Tested</span><input name="Chlamydia" id="chlamydiaResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+        </center>
 
-          <p>Chlamydia<br>Positive<input name="Chlamydia" id="chlamydiaResult" value="true"  type="radio"><br>Negative<input name="Chlamydia" id="chlamydiaResult" value="false" type="radio"><br></p>
+          <center>
 
           <p>Gonorrhea<br>Positive<input name="Gonorrhea" id="gonorrheaResult" value="true"  type="radio"><br>Negative<input name="Gonorrhea" id="gonorrheaResult" value="false" type="radio"><br></p>
 
@@ -70,7 +83,13 @@
     var data = JSON.parse(decodeURIComponent(encodedData));
 
     function onDeviceReady(){
+
       $(".navbar a").attr("href", "http://localhost/match.html?data=" + encodedData);
+
+      $('.toggle').click(function(){
+        $(this).addClass('inputty');
+        $(this).siblings('.toggle').removeClass('inputty');
+      });
 
       $("button").on("click", function(){
         response = testResults({
@@ -93,6 +112,16 @@
       });
 
     }
+
+    // $('label').on('click', function(){
+    //   $(this).parent('.toggle').addClass('input-checked');
+    // })
+
+    // $("button").on("click", function(){
+    //   alert();
+    //   // $(this).parent('.toggle').addClass('inputty');
+    //   // $(this).parent('.toggle').siblings('.toggle').children('label').children('span').removeClass('input-checked');
+    // });
   
   </script>
     

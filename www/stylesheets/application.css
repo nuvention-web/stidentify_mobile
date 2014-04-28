@@ -19,8 +19,51 @@ input, textarea, [contenteditable] * {
   background-color: white;
 }
 
+.toggle {
+  margin: 0px;
+  border: 0px;
+  overflow: auto;
+  float: left;
+  width: calc(100% / 3);
+  height: 33vw;
+  background-color: grey;
+  color: white;
+  text-align: center;
+}
 
-#email, #password, .signin-submit{
+.toggle label {
+
+}
+
+.toggle label span {
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+  line-height: 33vw;
+  cursor: pointer;
+  height: 33vw;
+}
+
+.toggle label input {
+    display:none;
+    height: 33vw;
+    width: calc(100% / 3);
+}
+
+.toggle .input-checked {
+  background-color: #B61F1F;
+}
+
+.inputty {
+  background-color: #B61F1F;
+}
+
+.clear-thing{
+  clear: both;
+  width: 0px;
+}
+
+#email, #password, .signin-submit, #password-confirmation, #first-name, #last-name{
   background-color: white !important;
   display: inline-block;
   padding: 16px 10px;

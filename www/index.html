@@ -34,6 +34,14 @@
       <input name="password" id="password" placeholder="password" type="password" value="12345">
       <input name="commit" value="SIGN IN" type="submit" id="submit" class="signin-submit">
     </form>
+
+    <!-- <br/>
+    <br/>
+
+
+      <input name="commit" value="SIGN UP" type="submit" id="submit" class="signin-submit"> -->
+
+      <h3 style="font-size:28px;color:white">or <a href="http://localhost/register.html" style="color:white;text-decoration:underline;font-weight:700">sign up</a></h3>
     </center>
 
 
@@ -46,6 +54,7 @@
     function onDeviceReady(){
 
       steroids.view.navigationBar.hide();
+      steroids.drawers.disableGesture(); 
 
       $('form').on('submit', function(){
 
