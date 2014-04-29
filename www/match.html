@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width">
-  <title>My Steroids App</title>
+  <title>STIdentify</title>
 
   <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="/stylesheets/application.css" />
@@ -25,16 +25,18 @@
     <a style="font-size:30px;color:white;width:30%;font-weight:700" id="drawer-button">&#9776;</a>
   </div>
 
-  <div class="compare-view-content" style="padding:10px;">
+  <div class="match-view-content" style="padding:10px;">
 
-    <h1 class="title-welcome"></h1>
+    <!-- <h1 class="title-welcome"></h1> -->
+
+    <center><h2>Your STId:</h2></center>
 
     <div class="qr-code"></div>
 
     <center>
 <!--     <div class="topcoat-button" id="drawer-button">Open drawer</div>
  -->    <button id="barcode" class="compare-submit">Scan STID</button>
-    <button id="encode" class="compare-submit">Show STID</button>
+    <!-- <button id="encode" class="compare-submit">Show STID</button> -->
 
     </center>
 
@@ -47,10 +49,10 @@
         </center>
       </form>
  -->
-      <center>
+      <!-- <center>
         <br/>
         <a href="http://localhost/add_results.html?data=" class="link-to-results"><button class="add-results">add test results</button></a>
-      </center>
+      </center> -->
 
   </div>
 
@@ -58,6 +60,10 @@
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady(){
+      
+
+      // $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
+
 
       
 
@@ -144,9 +150,9 @@
         showDrawer();
       })
       
-      $("#encode").on("click", function(){
+
         $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
-      });
+
 
       
       $(".link-to-results").attr("href", "http://localhost/add_results.html?data=" + encodedData);
