@@ -32,8 +32,7 @@
     <div class="qr-code"></div>
 
     <center>
-<!--     <div class="topcoat-button" id="drawer-button">Open drawer</div>
- -->    <button id="barcode" class="compare-submit">Scan STID</button>
+    <button id="barcode" class="compare-submit">Scan STID</button>
     <button id="encode" class="compare-submit">Show STID</button>
 
     </center>
@@ -107,6 +106,7 @@
 
       window.addEventListener("message", function(msg) {
         if (msg.data.selection == "logout") {
+          logout({access_token: data["access_token"]});
           steroids.layers.popAll();
           window.location.href = ("http://localhost/index.html");
         } else {

@@ -62,6 +62,11 @@ function testResults(options) {
   return genericAPICall(options, "users/tests", "POST", function(data) { return data["response"]} )
 }
 
+function logout(options) {
+  return genericAPICall(options, "sessions/logout", "POST", function(data) { return data["response"]} )
+}
+
+
 //example:
 // testResults({
 //   chlamydiaResult: [true or false]
@@ -82,10 +87,10 @@ function redirect(data) {
   var matchView = new steroids.views.WebView( { location: "http://localhost/match.html?data=" + encodeParams(data) } );
   
   var myAnimation = new steroids.Animation({
-    transition: "curlUp",
-    duration: 0.2,
+    transition: "flipHorizontalFromRight",
+    duration: 0.4,
     curve: "easeInOut",
-    reversedTransition: "curlDown",
+    reversedTransition: "flipHorizontalFromLeft",
     reversedDuration: 0.4
   });
 
