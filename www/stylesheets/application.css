@@ -19,6 +19,55 @@ input, textarea, [contenteditable] * {
   background-color: white;
 }
 
+.match-view-content h2 {
+  color: #6E6E6E;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 28px;
+} 
+
+.questionmark {
+  margin-top: -70px;
+  font-size: 100px;
+  color: yellow;
+}
+
+.questionmark h1 {
+  font-weight: 500;
+}
+
+.exclamationmark{
+  margin-top: -70px;
+  font-size: 100px;
+  color: #b61f1f;
+}
+
+.exclamationmark h1 {
+  font-weight: 500;
+}
+
+.checkmark {
+  margin-top: -70px;
+  font-size: 100px;
+  color: green;
+}
+
+.matchview-text {
+  margin-top: -115px;
+  color: #6E6E6E;
+  font-family: 'Roboto', sans-serif;
+}
+
+.matchview-text h3 {
+  font-weight: 300;
+  font-size: 28px;
+}
+
+.matchview-text p {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 .toggle {
   margin: 0px;
   border: 0px;
@@ -118,7 +167,6 @@ input:-ms-input-placeholder {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   font-weight: 300;
-  height: 95%;
 }
 
 #stid, .compare-submit{
@@ -224,7 +272,6 @@ input:-ms-input-placeholder {
   font-family: 'Roboto', sans-serif;
   font-size: 22px;
   font-weight: 300;
-  height: 95%;
 }
 
 .add-results {
@@ -233,7 +280,6 @@ input:-ms-input-placeholder {
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: 300;
-  height: 95%;
   background-color: #B61F1F !important;
   display: inline-block;
   padding: 16px 10px;

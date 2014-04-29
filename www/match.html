@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width">
-  <title>My Steroids App</title>
+  <title>STIdentify</title>
 
   <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
   <link rel="stylesheet" href="/stylesheets/application.css" />
@@ -25,15 +25,19 @@
     <a style="font-size:30px;color:white;width:30%;font-weight:700" id="drawer-button">&#9776;</a>
   </div>
 
-  <div class="compare-view-content" style="padding:10px;">
+  <div class="match-view-content" style="padding:10px;">
 
-    <h1 class="title-welcome"></h1>
+    <!-- <h1 class="title-welcome"></h1> -->
+
+    <center><h2>Your STId:</h2></center>
 
     <div class="qr-code"></div>
 
     <center>
-    <button id="barcode" class="compare-submit">Scan STID</button>
-    <button id="encode" class="compare-submit">Show STID</button>
+
+<!--     <div class="topcoat-button" id="drawer-button">Open drawer</div>
+ -->    <button id="barcode" class="compare-submit">Scan STID</button>
+    <!-- <button id="encode" class="compare-submit">Show STID</button> -->
 
     </center>
 
@@ -46,10 +50,10 @@
         </center>
       </form>
  -->
-      <center>
+      <!-- <center>
         <br/>
         <a href="http://localhost/add_results.html?data=" class="link-to-results"><button class="add-results">add test results</button></a>
-      </center>
+      </center> -->
 
   </div>
 
@@ -57,22 +61,27 @@
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady(){
-
       
 
+      // $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
+
+      var encodedData = window.location.search.split("=")[1];
+      var data = JSON.parse(decodeURIComponent(encodedData));
+
+      
       $("#barcode").on("click", function(){
         cordova.plugins.barcodeScanner.scan(
           function (result) {
               var status = compare({access_token: access_token, stid: result.text});
 
               if (status == "match"){
-                $(".compare-view-content").html("<center><h1 style='font-size:200px;color:green;position:relative;bottom:60px'>✓</h1><p style='position:relative;bottom:120px;font-size:40px'>it's a match!</p></center>");
+                window.location.href = "http://localhost/matchview.html?data=" + encodedData;
               } else if (status == "caution") {
-                $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#F2C616;position:relative;bottom:100px'><strong>?</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution!</strong><br/>someone's tests are out of date</p></center>");
+                window.location.href = "http://localhost/cautionview.html?data=" + encodedData;
               } else if (status == "nonmatch") {
-                $(".compare-view-content").html("<center><h1 style='font-size:200px;color:#B61F1F;position:relative;bottom:100px'><strong>!</strong></h1><p style='position:relative;bottom:220px;font-size:40px'><strong>caution</strong><br/>you are not a match!</p></center>");
+                window.location.href = "http://localhost/nonmatch.html?data=" + encodedData;;
               } else {
-                $(".compare-view-content").html("<center><p>that's not a valid STID. Click 'back' to try again.</p></center>")
+                alert("that's not a valid STID! Click 'back' to try again.")
               }
 
               $('.navbar a').html("back");
@@ -101,8 +110,7 @@
         curve: "linear"
       });
 
-      var encodedData = window.location.search.split("=")[1];
-      var data = JSON.parse(decodeURIComponent(encodedData));
+      
 
       window.addEventListener("message", function(msg) {
         if (msg.data.selection == "logout") {
@@ -144,9 +152,9 @@
         showDrawer();
       })
       
-      $("#encode").on("click", function(){
+
         $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
-      });
+
 
       
       $(".link-to-results").attr("href", "http://localhost/add_results.html?data=" + encodedData);
