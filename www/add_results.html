@@ -20,57 +20,135 @@
 </head>
 <body class="compare-view">
 
-  <div class="navbar" style="width:100%;padding-bottom:10px;padding-top:10px;background-color:#B61F1F">
-    <a style="font-size:22px;color:white;width:30%;text-decoration:none" href="http://localhost/match.html">back</a>
+  <div class="navbar" style="width:100%;padding:10px 0px!important;background-color:#B61F1F">
+    <a style="font-size:30px;color:white;width:30%;font-weight:700;text-decoration:none;margin-left:10px !important" id="drawer-button">&#9776;</a>
+    <span style="color:white;float:right;font-size:30px;margin-right:10px;position:relative;top:5.5px;font-weight:300">STIdentify</span>
   </div>
+
 
   <div class="compare-view-content" style="padding:0px;margin:0px;border:0px;">
 
       <form>
         <h3 class="input-stid">Add your own test results below</h3>
-        <center>
-        <div class="test-results" style="width:100%">
+
+        <div class="test-results">
           <p>Chlamydia</p>
           <div class="toggle">
-            <label><span>+</span><input name="Chlamydia" id="chlamydiaResult" value="true"  type="radio"></label>
+            <label><span style="font-size:50px;">+</span><input name="Chlamydia" id="chlamydiaResult" value="true"  type="radio"></label>
           </div>
           <div class="toggle">
-            <label><span>-</span><input name="Chlamydia" id="chlamydiaResult" value="false" type="radio"></label>
+            <label><span style="font-size:50px;">-</span><input name="Chlamydia" id="chlamydiaResult" value="false" type="radio"></label>
           </div>
           <div class="toggle">
-            <label><span>Not Tested</span><input name="Chlamydia" id="chlamydiaResult" value="null" type="radio"></label>
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Chlamydia" id="chlamydiaResult" value="null" type="radio"></label>
           </div>
           <div class="clear-thing"></div>
         </div>
         </center>
 
-          <center>
+        <div class="test-results">
+          <p>Gonorrhea</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Gonorrhea" id="gonorrheaResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Gonorrhea" id="gonorrheaResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Gonorrhea" id="gonorrheaResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
 
-          <p>Gonorrhea<br>Positive<input name="Gonorrhea" id="gonorrheaResult" value="true"  type="radio"><br>Negative<input name="Gonorrhea" id="gonorrheaResult" value="false" type="radio"><br></p>
+        <div class="test-results">
+          <p>Hepatitis B</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="HepatitisB" id="hepatitisBResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="HepatitisB" id="hepatitisBResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="HepatitisB" id="hepatitisBResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
 
-          <p>Hepatitis B<br>Positive<input name="HepatitisB" id="hepatitisBResult" value="true"  type="radio"><br>Negative<input name="HepatitisB" id="hepatitisBResult" value="false" type="radio"><br></p>
+        <div class="test-results">
+          <p>Hepatitis C</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="HepatitisC" id="hepatitisCResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="HepatitisC" id="hepatitisCResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="HepatitisC" id="hepatitisCResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
 
-          <p>Hepatitis C<br>Positive<input name="HepatitisC" id="hepatitisCResult" value="true"  type="radio"><br>Negative<input name="HepatitisC" id="hepatitisCResult" value="false" type="radio"><br></p>
+        <div class="test-results">
+          <p>Herpes I</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Herpes1" id="herpes1Result" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Herpes1" id="herpes1Result" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Herpes1" id="herpes1Result" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
 
-          <p>Herpes I<br>Positive<input name="Herpes1" id="herpes1Result" value="true"  type="radio"><br>Negative<input name="Herpes1" id="herpes1Result" value="false" type="radio"><br></p>
+        <div class="test-results">
+          <p>Herpes II</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Herpes2" id="herpes2Result" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Herpes2" id="herpes2Result" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Herpes2" id="herpes2Result" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
 
-          <p>Herpes II<br>Positive<input name="Herpes2" id="herpes2Result" value="true"  type="radio"><br>Negative<input name="Herpes2" id="herpes2Result" value="false" type="radio"><br></p>
+        <div class="test-results">
+          <p>HIV</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="HIV" id="hivResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="HIV" id="hivResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="HIV" id="hivResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
 
-          <p>HIV<br>Positive<input name="HIV" id="hivResult" value="true"  type="radio"><br>Negative<input name="HIV" id="hivResult" value="false" type="radio"><br></p>
-
-          <p>Syphilis<br>Positive<input name="Syphilis" id="syphilisResult" value="true"  type="radio"><br>Negative<input name="Syphilis" id="syphilisResult" value="false" type="radio"><br></p>
-
-          <!-- <input name="commit" value="submit" type="submit" id="submit" class="compare-submit"> -->
-          </center>
+        <div class="test-results">
+          <p>Syphilis</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Syphilis" id="syphilisResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Syphilis" id="syphilisResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Syphilis" id="syphilisResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
       </form>
 
       <center>
-
         <!-- <a href="http://localhost/thanks.html"> -->
           <button class="add-results">submit</button>
         <!-- </a> -->
-
-
       </center>
 
   </div>
@@ -79,16 +157,28 @@
     
     document.addEventListener("deviceready", onDeviceReady, false);
 
-    var encodedData = window.location.search.split("=")[1];
-    var data = JSON.parse(decodeURIComponent(encodedData));
-
     function onDeviceReady(){
+      // alert($('.toggle').find('input').val());
 
-      $(".navbar a").attr("href", "http://localhost/match.html?data=" + encodedData);
+      var encodedData = window.location.search.split("=")[1];
+      var data = JSON.parse(decodeURIComponent(encodedData));
+
+      // $(".navbar a").attr("href", "http://localhost/match.html?data=" + encodedData);
 
       $('.toggle').click(function(){
+        $(this).find('input').attr("checked", true);
         $(this).addClass('inputty');
         $(this).siblings('.toggle').removeClass('inputty');
+      });
+
+      window.addEventListener("message", function(msg) {
+        if (msg.data.selection == "logout") {
+          logout({access_token: data["access_token"]});
+          steroids.layers.popAll();
+          window.location.href = ("http://localhost/index.html");
+        } else {
+          window.location.href = ("http://localhost/" + msg.data.selection + ".html?data=" + encodedData)
+        }
       });
 
       $("button").on("click", function(){
@@ -104,12 +194,53 @@
           syphilisResult: $("input[name=Syphilis]:checked").val()
         })
 
-        alert(response);
 
-        var encodedData = window.location.search.split("=")[1]
-
-        // document.location.href = "http://localhost/thanks.html?data=" + encodedData;
+        document.location.href = "http://localhost/thanks.html?data=" + encodedData;
       });
+
+      d = new Date();
+
+      var drawerView = new steroids.views.WebView( { 
+        location: "http://localhost/drawer.html", 
+        id: (d.getMinutes().toString() + d.getSeconds().toString() + d.getMilliseconds().toString() )
+
+       });
+
+      var myAnimation = new steroids.Animation({
+        transition: "slideFromLeft",
+        duration: 0.7,
+        curve: "linear"
+      });
+
+      
+      function showDrawer() {
+        steroids.drawers.show( {
+          view: drawerView,
+          edge: steroids.screen.edges.LEFT,
+          keepLoading: true,
+          widthOfDrawerInPixels: 400,
+          widthOfLayerInPixels: 75,
+          animation: myAnimation
+        }, {
+          onFailure: function(error) {
+            alert("Could not show the drawer: " + error.errorDescription);
+          }
+        });
+      };
+
+      drawerView.preload({},{
+        onSuccess: initGesture
+      });
+
+      function initGesture() {
+        steroids.drawers.enableGesture(drawerView);
+      }
+
+
+      $("#drawer-button").on("click", function(){ 
+        steroids.drawers.hideAll();
+        showDrawer();
+      })
 
     }
 

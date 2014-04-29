@@ -11,6 +11,13 @@ input, textarea, [contenteditable] * {
   padding: 10px;
 }
 
+.test-results p {
+  margin-bottom: 0px;
+  color: #6E6E6E;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
 .signin-view {
   background-color: #B61F1F;
 }
@@ -81,7 +88,7 @@ input, textarea, [contenteditable] * {
 }
 
 .toggle label {
-
+  width: calc(100% / 3);
 }
 
 .toggle label span {
@@ -96,11 +103,6 @@ input, textarea, [contenteditable] * {
 .toggle label input {
     display:none;
     height: 33vw;
-    width: calc(100% / 3);
-}
-
-.toggle .input-checked {
-  background-color: #B61F1F;
 }
 
 .inputty {
@@ -117,7 +119,7 @@ input, textarea, [contenteditable] * {
   display: inline-block;
   padding: 16px 10px;
   margin: 0px auto !important;
-  width: 70vw;
+  width: 77vw;
   outline: none;
   border-width: 1px;
   border-style: solid;
@@ -283,13 +285,9 @@ input:-ms-input-placeholder {
   background-color: #B61F1F !important;
   display: inline-block;
   padding: 16px 10px;
-  margin: 0px auto !important;
+  margin-bottom: 16px;
   outline: none;
-  border-width: 1px;
-  border-style: solid;
-  border-color: white;
-  border-color: rgba(0,0,0, .135);
-  background-color: transparent;
+  border-width: 0px;
   color: white;
   font-family: 'Roboto', sans-serif;
   -webkit-border-radius: 0px;
