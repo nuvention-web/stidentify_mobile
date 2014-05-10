@@ -82,13 +82,13 @@
               } else if (status == "nonmatch") {
                 window.location.href = "http://localhost/nonmatch.html?data=" + encodedData;;
               } else {
-                alert("that's not a valid STID! Click 'back' to try again.")
+                alert("that's not a valid STID!")
               }
 
-              $('.navbar a').html("back");
-              $('.navbar a').on("click", function(){
-                location.reload();
-              })
+              // $('.navbar a').html("back");
+              // $('.navbar a').on("click", function(){
+              //   location.reload();
+              // })
 
           }, 
           function (error) {
