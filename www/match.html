@@ -28,33 +28,17 @@
 
   <div class="match-view-content" style="padding:10px;">
 
-    <!-- <h1 class="title-welcome"></h1> -->
-
     <center><h2>Your STId:</h2></center>
 
     <div class="qr-code"></div>
 
     <center>
 
-<!--     <div class="topcoat-button" id="drawer-button">Open drawer</div>
- -->    <button id="barcode" class="compare-submit">Scan STID</button>
-    <!-- <button id="encode" class="compare-submit">Show STID</button> -->
+      <button id="barcode" class="compare-submit">Scan STID</button>
 
     </center>
 
-    <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?data=Example&amp;size=100x100" alt="" title="" />-->
-     <!--  <form>
-        <h3 class="input-stid">Input the other person's STID below to compare:</h3>
-        <center>
-          <input name="stid" id="stid" placeholder="STID (e.g. 2a45j4)" type="text" autocorrect="off" autocapitalize="off">
-          <input name="commit" value="submit" type="submit" id="submit" class="compare-submit">
-        </center>
-      </form>
- -->
-      <!-- <center>
-        <br/>
-        <a href="http://localhost/add_results.html?data=" class="link-to-results"><button class="add-results">add test results</button></a>
-      </center> -->
+
 
   </div>
 
@@ -62,14 +46,10 @@
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady(){
-      
-
-      // $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
 
       var encodedData = window.location.search.split("=")[1];
       var data = JSON.parse(decodeURIComponent(encodedData));
 
-      
       $("#barcode").on("click", function(){
         cordova.plugins.barcodeScanner.scan(
           function (result) {
@@ -84,12 +64,6 @@
               } else {
                 alert("that's not a valid STID!")
               }
-
-              // $('.navbar a').html("back");
-              // $('.navbar a').on("click", function(){
-              //   location.reload();
-              // })
-
           }, 
           function (error) {
               alert("Scanning failed: " + error);
@@ -97,25 +71,11 @@
         );
       });
 
-      d = new Date();
-
-      var drawerView = new steroids.views.WebView( { 
-        location: "http://localhost/drawer.html", 
-        id: (d.getMinutes().toString() + d.getSeconds().toString() + d.getMilliseconds().toString() )
-
-       });
-
-      var myAnimation = new steroids.Animation({
-        transition: "slideFromLeft",
-        duration: 0.7,
-        curve: "linear"
-      });
-
-      
 
       window.addEventListener("message", function(msg) {
         if (msg.data.selection == "logout") {
           logout({access_token: data["access_token"]});
+
           steroids.layers.popAll();
           window.location.href = ("http://localhost/index.html");
         } else {
@@ -123,40 +83,32 @@
         }
       });
 
-
-      function showDrawer() {
-        steroids.drawers.show( {
-          view: drawerView,
-          edge: steroids.screen.edges.LEFT,
-          keepLoading: true,
-          widthOfDrawerInPixels: 400,
-          widthOfLayerInPixels: 75,
-          animation: myAnimation
-        }, {
-          onFailure: function(error) {
-            alert("Could not show the drawer: " + error.errorDescription);
-          }
-        });
-      };
-
-      drawerView.preload({},{
-        onSuccess: initGesture
+      var drawerView = new steroids.views.WebView({ 
+        location: "http://localhost/drawer.html",
+        id: "drawer"
       });
 
-      function initGesture() {
-        steroids.drawers.enableGesture(drawerView);
+      // steroids.drawers.enableGesture(drawerView)
+
+      function updateDrawer() {
+        steroids.drawers.update({
+          left: drawerView,
+          options: {
+            showShadow: false
+          }          
+        });
       }
 
+      updateDrawer();
 
-      $("#drawer-button").on("click", function(){ 
-        steroids.drawers.hideAll();
-        showDrawer();
+
+      $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
+
+      $("#drawer-button").on("click", function(){
+        steroids.drawers.hide();
+        steroids.drawers.show();
+
       })
-      
-
-        $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
-
-
       
       $(".link-to-results").attr("href", "http://localhost/add_results.html?data=" + encodedData);
 
@@ -167,10 +119,28 @@
 
     }
 
-    function logout() {
-      steroids.layers.popAll();
-      // steroids.view.navigationBar.hide();
-    }
+
+
+    // function logout() {
+
+    //   var drawerView = new steroids.views.WebView({ 
+    //     location: "http://localhost/drawer.html",
+    //     id: "drawer"
+    //   });
+
+    //   steroids.drawers.update({
+    //     left: drawerView,
+    //     options: {
+    //       showShadow: false,
+    //       openGestures: ["None"],
+    //       closeGestures: ["None"]
+    //     }          
+    //   });
+      
+    //   steroids.layers.popAll();
+
+    //   // steroids.view.navigationBar.hide();
+    // }
   
   </script>
     

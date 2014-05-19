@@ -53,8 +53,34 @@
 
     function onDeviceReady(){
 
+      // index
+
+      // var drawerView = new steroids.views.WebView({ 
+      //   location: "http://localhost/drawer.html",
+      //   id: "drawer"
+      // });
+
+      // function disableDrawer() {
+      //   steroids.drawers.update({
+      //     left: drawerView,
+      //     options: {
+      //       openGestures: [],
+      //       closeGestures: []
+      //     }
+      //   }, {
+      //     onSuccess: function() {
+      //       alert("Drawer successfully updated!");
+      //     },
+      //     onFailure: function(message) {
+      //       alert("Could not update drawer." + JSON.stringify(message));
+      //     }
+      //   });
+      // }
+
+      // disableDrawer();  
+
       steroids.view.navigationBar.hide();
-      steroids.drawers.disableGesture();
+      // steroids.drawers.disableGesture();
       // steroids.view.removeLoading(); 
 
       $('form').on('submit', function(){
@@ -63,38 +89,6 @@
           email: $("#email").val(), 
           password: $("#password").val() 
         })
-
-        // $.support.cors = true;
-        // $.ajax({
-        //   headers: {          
-        //     Accept: "application/json; charset=utf-8",         
-        //     "Content-Type": "application/json; charset=utf-8"
-        //   },
-        //   url: "http://stidentify.herokuapp.com/api/sessions",
-        //   async: false,
-        //   type: "POST",
-        //   data: JSON.stringify({email:$("#email").val(), password:$("#password").val()}),
-        //   dataType: "json",
-        //   crossDomain: true,
-        //   xhrFields: {
-        //     withCredentials: true
-        //   },
-        //   success: function(data) {
-        //     if (data["response"] = "success") {
-        //       redirect(data);
-        //     } else {
-        //       alert("Try again!");
-        //     }
-        //   }
-        // })
-        
-        // navigator.notification.alert(
-        //   'Invalid email or password ',  // message
-        //   null,                   // callback
-        //   'Error',            // title
-        //   'Try Again'                  // buttonName
-        // );
-
       });
     }
 

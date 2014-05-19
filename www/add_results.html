@@ -198,61 +198,13 @@
         document.location.href = "http://localhost/thanks.html?data=" + encodedData;
       });
 
-      d = new Date();
-
-      var drawerView = new steroids.views.WebView( { 
-        location: "http://localhost/drawer.html", 
-        id: (d.getMinutes().toString() + d.getSeconds().toString() + d.getMilliseconds().toString() )
-
-       });
-
-      var myAnimation = new steroids.Animation({
-        transition: "slideFromLeft",
-        duration: 0.7,
-        curve: "linear"
-      });
-
-      
-      function showDrawer() {
-        steroids.drawers.show( {
-          view: drawerView,
-          edge: steroids.screen.edges.LEFT,
-          keepLoading: true,
-          widthOfDrawerInPixels: 400,
-          widthOfLayerInPixels: 75,
-          animation: myAnimation
-        }, {
-          onFailure: function(error) {
-            alert("Could not show the drawer: " + error.errorDescription);
-          }
-        });
-      };
-
-      drawerView.preload({},{
-        onSuccess: initGesture
-      });
-
-      function initGesture() {
-        steroids.drawers.enableGesture(drawerView);
-      }
-
-
-      $("#drawer-button").on("click", function(){ 
-        steroids.drawers.hideAll();
-        showDrawer();
+      $("#drawer-button").on("click", function(){
+        steroids.drawers.hide();
+        steroids.drawers.show();
       })
+      
 
     }
-
-    // $('label').on('click', function(){
-    //   $(this).parent('.toggle').addClass('input-checked');
-    // })
-
-    // $("button").on("click", function(){
-    //   alert();
-    //   // $(this).parent('.toggle').addClass('inputty');
-    //   // $(this).parent('.toggle').siblings('.toggle').children('label').children('span').removeClass('input-checked');
-    // });
   
   </script>
     

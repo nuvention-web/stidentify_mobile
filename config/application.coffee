@@ -1,57 +1,76 @@
-# For an explanation of the steroids.config properties, see the guide at
-# http://guides.appgyver.com/steroids/guides/project_configuration/config-application-coffee/
+# -- Required settings --
 
-steroids.config.name = "helloWorld"
-
-# -- Initial Location --
+steroids.config.name = "Steroids.js test app"
 steroids.config.location = "http://localhost/index.html"
 
-# -- Tab Bar --
-# steroids.config.tabBar.enabled = true
-# steroids.config.tabBar.tabs = [
-#   {
-#     title: "Index"
-#     icon: "icons/pill@2x.png"
-#     location: "http://localhost/index.html"
-#   },
-#   {
-#     title: "Internet"
-#     icon: "icons/telescope@2x.png"
-#     location: "http://www.google.com"
-#   }
-# ]
+# -- Tabs --
 
-# steroids.config.tabBar.tintColor = "#000000"
-# steroids.config.tabBar.tabTitleColor = "#00aeef"
-# steroids.config.tabBar.selectedTabTintColor = "#ffffff"
-# steroids.config.tabBar.selectedTabBackgroundImage = "icons/pill@2x.png"
+# A boolean to enable tab bar (on bottom)
+# This will override steroids.config.location (that is for single webview apps, like in PhoneGap)
+# Default: false
+#
+steroids.config.tabBar.enabled = false
 
-# steroids.config.tabBar.backgroundImage = ""
+# Array with objects to specify which tabs are created on app startup
+#
+# Tab object properties are:
+# - title: text to show in tab title
+# - icon: path to icon file (f.e. images/icon@2x.png)
+# - location: can be one of these
+#   - file URL (relative to www, f.e. index.html)
+#   - http://localhost:13101/ (serves files locally from www, f.e. http://localhost:13101/ would serve index.html)
+#   - http://www.google.com (directly from internet)
+#
+steroids.config.tabBar.tabs = [
 
-# -- Navigation Bar --
-steroids.config.navigationBar.tintColor = "#B61F1F"
-steroids.config.navigationBar.titleColor = "#ffffff"
-steroids.config.navigationBar.buttonTintColor = "#ffffff"
+]
 
-# steroids.config.navigationBar.landscape.backgroundImage = ""
-# steroids.config.navigationBar.portrait.backgroundImage = ""
+steroids.config.preloads = [
+  {
+    "id": "drawer",
+    "location": "http://localhost/drawer.html"
+  }
+]
 
-# -- Android Loading Screen
-steroids.config.loadingScreen.tintColor = "#262626"
 
-# -- iOS Status Bar --
+# -- Status bar --
+# Sets status bar visible (carrier, clock, battery status)
+# Default: true
+#
 steroids.config.statusBar.enabled = true
-steroids.config.statusBar.style = "default"
 
-# -- File Watcher --
-# steroids.config.watch.exclude = ["www/my_excluded_file.js", "www/my_excluded_dir"]
+# -- Colors --
+# Color values can be set in hex codes, eg. #ffbb20
+# Setting these values override values set by the application theme in steroids.config.theme
+# Default for all attributes: ""
 
-# -- Pre- and Post-Make hooks --
-# steroids.config.hooks.preMake.cmd = "echo"
-# steroids.config.hooks.preMake.args = ["running yeoman"]
+# steroids.config.navigationBar.tintColor = ""
+# steroids.config.navigationBar.titleColor = ""
+
+# steroids.config.navigationBar.buttonTintColor = ""
+# steroids.config.navigationBar.buttonTitleColor = ""
+
+steroids.config.navigationBar.borderSize = 4
+steroids.config.navigationBar.borderColor = "#aef"
+
+# steroids.config.tabBar.tintColor = ""
+# steroids.config.tabBar.tabTitleColor = ""
+# steroids.config.tabBar.selectedTabTintColor = ""
+
+# Can be used to set an indicator image for the selected tab (can be bigger than the tab)
+# Default: ""
+# steroids.config.tabBar.selectedTabBackgroundImage = ""
+
+# Built-in iOS theme, values: black and default
+# Default: "default"
+#
+# steroids.config.theme = "default"
+
+# The preMake command is run before `steroids make`, the process where `app/` and `www/` folders are processed into the `dist/` folder.
+# steroids.config.hooks.preMake.cmd = "grunt"
+# steroids.config.hooks.preMake.args = ["build"]
+#
+# The postMake command is run right after `steroids make`, before running `steroids package`, the process that packages the app before sending it to client devices.
 # steroids.config.hooks.postMake.cmd = "echo"
 # steroids.config.hooks.postMake.args = ["cleaning up files"]
 
-# -- Default Editor --
-# steroids.config.editor.cmd = "subl"
-# steroids.config.editor.args = ["."]
