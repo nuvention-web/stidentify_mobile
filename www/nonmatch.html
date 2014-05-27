@@ -1,0 +1,139 @@
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <title>STIdentify</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,300italic,400,700|Julius+Sans+One|Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+
+  <script src="/javascripts/onerror.js"></script>
+  <script src="/javascripts/console.log.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <script src="/javascripts/application.js"></script>
+  <script src="/javascripts/api.js"></script>
+</head>
+<body>
+
+  <div class="navbar" style="width:100%;padding:10px 0px!important;background-color:#B61F1F">
+    <a style="font-size:30px;color:white;width:30%;font-weight:700;text-decoration:none;margin-left:10px !important" id="drawer-button">&#9776;</a>
+    <span style="color:white;float:right;font-size:30px;margin-right:10px;position:relative;top:5.5px;font-weight:300">STIdentify</span>
+  </div>
+
+
+  <div class="exclamationmark">
+    <center><h1>!</h1></center>
+  </div>
+
+  <div class="matchview-text">
+    <center>
+      <h3>Your test results <b>do not</b> match</h3>
+      <p><b>Warning</b>: STIdentify cannot guarantee the authenticity of others' test results</p>
+    </center>
+  </div>
+
+  <div id="menu" style='display:none;z-index:998;background-color:#B61F1F;color:white;font-size:24px;font-weight:300;position:fixed;top:64px;left:0;width:100%; solid;text-align:center'>
+      <div style='border-bottom:1px solid white;border-top:1px solid white;padding: 10px 0' id="compare-link">Compare</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="add-results-link">Add Results</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="edit-link">Settings</div>
+      <div style='padding: 10px 0' id="logout-link">Logout</div>
+    </div>
+
+  <script>
+  document.addEventListener("deviceready", onDeviceReady, false);
+
+  function onDeviceReady(){
+    var encodedData = window.location.search.split("=")[1];
+    var data = JSON.parse(decodeURIComponent(encodedData));
+    
+    window.addEventListener("message", function(msg) {
+      if (msg.data.selection == "logout") {
+        logout({access_token: data["access_token"]});
+        steroids.layers.popAll();
+        window.location.href = ("http://localhost/index.html");
+      } else {
+        window.location.href = ("http://localhost/" + msg.data.selection + ".html?data=" + encodedData)
+      }
+    });
+
+    //  d = new Date();
+
+    // var drawerView = new steroids.views.WebView( { 
+    //   location: "http://localhost/drawer.html", 
+    //   id: (d.getMinutes().toString() + d.getSeconds().toString() + d.getMilliseconds().toString() )
+
+    //  });
+
+    // var myAnimation = new steroids.Animation({
+    //   transition: "slideFromLeft",
+    //   duration: 0.7,
+    //   curve: "linear"
+    // });
+
+    
+    // function showDrawer() {
+    //   steroids.drawers.show( {
+    //     view: drawerView,
+    //     edge: steroids.screen.edges.LEFT,
+    //     keepLoading: true,
+    //     widthOfDrawerInPixels: 400,
+    //     widthOfLayerInPixels: 75,
+    //     animation: myAnimation
+    //   }, {
+    //     onFailure: function(error) {
+    //       alert("Could not show the drawer: " + error.errorDescription);
+    //     }
+    //   });
+    // };
+
+    // drawerView.preload({},{
+    //   onSuccess: initGesture
+    // });
+
+    // function initGesture() {
+    //   steroids.drawers.enableGesture(drawerView);
+    // }
+
+
+     $("#drawer-button").on("click", function(){
+        // steroids.drawers.hide();
+        // steroids.drawers.show();
+        // $("body").append("")
+        if ($("#menu").is(":hidden")){
+          $("#menu").slideDown(250);
+        } else {
+          $("#menu").slideUp(250);
+        }
+      });
+
+      $("#compare-link").on("click", function(){
+        window.location.href = ("http://localhost/match.html?data=" + encodedData)
+      })
+
+      $("#add-results-link").on("click", function(){
+        data = currentResults({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/add_results.html?data=" + encodeParams(data));
+      })
+
+      $("#edit-link").on("click", function(){
+        data = getInfo({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/edit.html?data=" + encodeParams(data));
+      })
+
+      $("#logout-link").on("click", function(){
+        logout({access_token: data["access_token"]});
+        steroids.layers.popAll();
+        window.location.href = ("http://localhost/index.html");
+      })
+  }
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <title>My Steroids App</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+  <script src="/javascripts/console.log.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <script src="/javascripts/application.js"></script>
+  <script src="/javascripts/api.js"></script>
+</head>
+<body class="compare-view">
+
+  <div class="navbar" style="width:100%;padding:10px 0px!important;background-color:#B61F1F">
+    <a style="font-size:30px;color:white;width:30%;font-weight:700;text-decoration:none;margin-left:10px !important" id="drawer-button">&#9776;</a>
+    <span style="color:white;float:right;font-size:30px;margin-right:10px;position:relative;top:5.5px;font-weight:300">STIdentify</span>
+  </div>
+
+
+  <div class="compare-view-content" style="padding:0px;margin:0px;border:0px;">
+
+      <form>
+        <h3 class="input-stid">Add your own test results below</h3>
+
+        <div class="test-results">
+          <p>Chlamydia</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Chlamydia" id="chlamydiaResult" class="chlamydiaResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Chlamydia" id="chlamydiaResult" class="chlamydiaResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Chlamydia" id="chlamydiaResult" class="chlamydiaResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+        </center>
+
+        <div class="test-results">
+          <p>Gonorrhea</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Gonorrhea" id="gonorrheaResult" class="gonorrheaResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Gonorrhea" id="gonorrheaResult" class="gonorrheaResult"  value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Gonorrhea" id="gonorrheaResult" class="gonorrheaResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+
+        <div class="test-results">
+          <p>Hepatitis B</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="HepatitisB" id="hepatitisBResult" class="hepatitisBResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="HepatitisB" id="hepatitisBResult" class="hepatitisBResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="HepatitisB" id="hepatitisBResult" class=="hepatitisBResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+
+        <div class="test-results">
+          <p>Hepatitis C</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="HepatitisC" id="hepatitisCResult" class="hepatitisCResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="HepatitisC" id="hepatitisCResult" class="hepatitisCResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="HepatitisC" id="hepatitisCResult" class="hepatitisCResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+
+        <div class="test-results">
+          <p>Herpes I</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Herpes1" id="herpes1Result" class="herpes1Result" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Herpes1" id="herpes1Result" class="herpes1Result" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Herpes1" id="herpes1Result" class="herpes1Result" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+
+        <div class="test-results">
+          <p>Herpes II</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Herpes2" id="herpes2Result" class="herpes2Result" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Herpes2" id="herpes2Result" class="herpes2Result" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Herpes2" id="herpes2Result" class="herpes2Result" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+
+        <div class="test-results">
+          <p>HIV</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="HIV" id="hivResult" class="hivResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="HIV" id="hivResult" class="hivResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="HIV" id="hivResult" class="hivResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+
+        <div class="test-results">
+          <p>Syphilis</p>
+          <div class="toggle">
+            <label><span style="font-size:50px;">+</span><input name="Syphilis" id="syphilisResult" class="syphilisResult" value="true"  type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:50px;">-</span><input name="Syphilis" id="syphilisResult" class="syphilisResult" value="false" type="radio"></label>
+          </div>
+          <div class="toggle">
+            <label><span style="font-size:18px;font-weight:500;">Not Tested</span><input name="Syphilis" id="syphilisResult" class="syphilisResult" value="null" type="radio"></label>
+          </div>
+          <div class="clear-thing"></div>
+        </div>
+      </form>
+
+      <center>
+        <!-- <a href="http://localhost/thanks.html"> -->
+          <button class="add-results">submit</button>
+        <!-- </a> -->
+      </center>
+
+  </div>
+
+  <div id="menu" style='display:none;z-index:998;background-color:#B61F1F;color:white;font-size:24px;font-weight:300;position:fixed;top:64px;left:0;width:100%; solid;text-align:center'>
+      <div style='border-bottom:1px solid white;border-top:1px solid white;padding: 10px 0' id="compare-link">Compare</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="add-results-link">Add Results</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="edit-link">Settings</div>
+      <div style='padding: 10px 0' id="logout-link">Logout</div>
+    </div>
+
+  <script>
+    
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady(){
+      // alert($('.toggle').find('input').val());
+
+      var encodedData = window.location.search.split("=")[1];
+      var data = JSON.parse(decodeURIComponent(encodedData));
+
+      // $("#chlamydiaResult").attr("checked", true)
+      // $($(".chlamydiaResult")[1]).parent().parent().addClass('inputty');
+
+      for (disease in data) {
+        if (disease.indexOf("result") != -1) {
+          diseaseName = disease.replace(/(\_[a-z])/g, function($1){return $1.toUpperCase().replace('_','')}).replace("_", "")
+          $("#" + diseaseName).attr("checked", data[disease]);
+          if (data[disease]) {
+            $("#" + diseaseName).parent().parent().addClass('inputty'); 
+          } else if (!data[disease]){
+            $($("." + diseaseName)[1]).parent().parent().addClass('inputty');
+          }
+        }
+      } 
+      // alert(JSON.stringify(data));
+
+      // $(".navbar a").attr("href", "http://localhost/match.html?data=" + encodedData);
+
+      $('.toggle').click(function(){
+        $(this).find('input').attr("checked", true);
+        $(this).addClass('inputty');
+        $(this).siblings('.toggle').removeClass('inputty');
+      });
+
+      window.addEventListener("message", function(msg) {
+        if (msg.data.selection == "logout") {
+          logout({access_token: data["access_token"]});
+          steroids.layers.popAll();
+          window.location.href = ("http://localhost/index.html");
+        } else {
+          window.location.href = ("http://localhost/" + msg.data.selection + ".html?data=" + encodedData)
+        }
+      });
+
+      $("button").on("click", function(){
+        response = testResults({
+          access_token: data["access_token"],
+          chlamydiaResult: $("input[name=Chlamydia]:checked").val(),
+          gonorrheaResult: $("input[name=Gonorrhea]:checked").val(),
+          hepatitisBResult: $("input[name=HepatitisB]:checked").val(),
+          hepatitisCResult: $("input[name=HepatitisC]:checked").val(), 
+          herpes1Result: $("input[name=Herpes1]:checked").val(),
+          herpes2Result: $("input[name=Herpes2]:checked").val(),
+          hivResult: $("input[name=HIV]:checked").val(),
+          syphilisResult: $("input[name=Syphilis]:checked").val()
+        })
+
+
+        document.location.href = "http://localhost/thanks.html?data=" + encodedData;
+      });
+
+       $("#drawer-button").on("click", function(){
+        // steroids.drawers.hide();
+        // steroids.drawers.show();
+        // $("body").append("")
+        if ($("#menu").is(":hidden")){
+          $("#menu").slideDown(250);
+        } else {
+          $("#menu").slideUp(250);
+        }
+      });
+
+      $("#compare-link").on("click", function(){
+        window.location.href = ("http://localhost/match.html?data=" + encodedData)
+      })
+
+      $("#add-results-link").on("click", function(){
+        data = currentResults({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/add_results.html?data=" + encodeParams(data));
+      })
+
+      $("#edit-link").on("click", function(){
+        data = getInfo({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/edit.html?data=" + encodeParams(data));
+      })
+
+      $("#logout-link").on("click", function(){
+        logout({access_token: data["access_token"]});
+        steroids.layers.popAll();
+        window.location.href = ("http://localhost/index.html");
+      })
+      
+
+    }
+  
+  </script>
+    
+    
+</body>
+</html>

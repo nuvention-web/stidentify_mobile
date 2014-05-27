@@ -10,3 +10,331 @@ input, textarea, [contenteditable] * {
 .content-padded {
   padding: 10px;
 }
+
+.test-results p {
+  margin-bottom: 0px;
+  color: #6E6E6E;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.signin-view {
+  background-color: #B61F1F;
+}
+
+.compare-view {
+  background-color: white;
+}
+
+.match-view-content h2 {
+  color: #6E6E6E;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 28px;
+} 
+
+.questionmark {
+  margin-top: -70px;
+  font-size: 100px;
+  color: yellow;
+}
+
+.questionmark h1 {
+  font-weight: 500;
+}
+
+.exclamationmark{
+  margin-top: -70px;
+  font-size: 100px;
+  color: #b61f1f;
+}
+
+.exclamationmark h1 {
+  font-weight: 500;
+}
+
+.checkmark {
+  margin-top: -70px;
+  font-size: 100px;
+  color: green;
+}
+
+.matchview-text {
+  margin-top: -115px;
+  color: #6E6E6E;
+  font-family: 'Roboto', sans-serif;
+}
+
+.matchview-text h3 {
+  font-weight: 300;
+  font-size: 28px;
+}
+
+.matchview-text p {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.toggle {
+  margin: 0px;
+  border: 0px;
+  overflow: auto;
+  float: left;
+  width: calc(100% / 3);
+  height: 33vw;
+  background-color: grey;
+  color: white;
+  text-align: center;
+}
+
+.toggle label {
+  width: calc(100% / 3);
+}
+
+.toggle label span {
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+  line-height: 33vw;
+  cursor: pointer;
+  height: 33vw;
+}
+
+.toggle label input {
+    display:none;
+    height: 33vw;
+}
+
+.inputty {
+  background-color: #B61F1F;
+}
+
+.clear-thing{
+  clear: both;
+  width: 0px;
+}
+
+#email, #password, .signin-submit, #password-confirmation, #first-name, #last-name{
+  background-color: white !important;
+  display: inline-block;
+  padding: 16px 10px;
+  margin: 0px auto !important;
+  width: 77vw;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  border-color: rgba(0,0,0, .135);
+  background-color: transparent;
+  color: #999;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+/*  height: 6vh;
+*/}
+
+input::-webkit-input-placeholder {
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input::-moz-placeholder {
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input:-moz-placeholder {   /* Older versions of Firefox */
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input:-ms-input-placeholder { 
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+
+.signin-submit {
+  color: #B61F1F;
+  margin-top: 20px !important; 
+  width: 77vw;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+#stid, .compare-submit{
+  background-color: white !important;
+  display: inline-block;
+  padding: 16px 10px;
+  margin: 0px auto !important;
+  width: 70vw;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  border-color: rgba(0,0,0, .135);
+  background-color: transparent;
+  color: #999;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+/*  height: 6vh;
+*/}
+
+input::-webkit-input-placeholder {
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input::-moz-placeholder {
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input:-moz-placeholder {   /* Older versions of Firefox */
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input:-ms-input-placeholder { 
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+
+.compare-submit{
+  background-color: #B61F1F !important;
+  display: inline-block;
+  padding: 16px 10px;
+  margin: 0px auto !important;
+  width: 70vw;
+  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  border-color: rgba(0,0,0, .135);
+  background-color: transparent;
+  color: #999;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+/*  height: 6vh;
+*/}
+
+input::-webkit-input-placeholder {
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input::-moz-placeholder {
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input:-moz-placeholder {   /* Older versions of Firefox */
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+input:-ms-input-placeholder { 
+  font-size: 14px !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #b61f1f;
+}
+
+.compare-submit {
+  color: white;
+  margin-top: 20px !important; 
+  width: 77vw;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.add-results {
+  color: white !important; 
+  width: 77vw;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  background-color: #B61F1F !important;
+  display: inline-block;
+  padding: 16px 10px;
+  margin-bottom: 16px;
+  outline: none;
+  border-width: 0px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+
+.input-stid {
+  color: #6E6E6E;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+.title-stid {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 66px;
+  position: relative;
+  margin: 0.25em auto 0.15em auto;
+}
+
+.title-stid span {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+  position: relative;
+  margin: 0.25em auto 0.15em auto;
+}
+
+.title-welcome {
+  color: #B61F1F;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 58px;
+  position: relative;
+  margin: 0.25em auto 0.15em auto;
+}
+
+.tagline {
+  color: white;
+  margin-bottom: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  width: 80vw !important;
+}

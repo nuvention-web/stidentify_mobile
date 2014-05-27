@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <title>My Steroids App</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+  <script src="/javascripts/console.log.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <script src="/javascripts/application.js"></script>
+  <script src="/javascripts/api.js"></script>
+</head>
+<body class="compare-view" style="background-color:#B61F1F">
+
+  <div class="navbar" style="width:100%;padding:15px 10px!important;background-color:#B61F1F">
+    <a style="font-size:22px;color:white;width:30%;text-decoration:none" href="http://localhost/index.html">back</a>
+  </div>
+
+  <div class="compare-view-content" style="">
+      <center>
+        <h1 style="color:white;font-family:'Roboto',sans-serif;font-weight:300;position:relative;bottom:10px">STIdentify Signup</h1>
+
+        <form>
+          <input name="first-name" id="first-name" placeholder="first name" type="text" autocorrect="off">
+          <input name="last-name" id="last-name" placeholder="last name" type="text" autocorrect="off">
+          <input name="email" id="email" placeholder="email address" type="email" autocorrect="off" autocapitalize="off">
+          <input name="password" id="password" placeholder="password" type="password">
+          <input name="password-confirmation" id="password-confirmation" placeholder="confirm password" type="password">
+          <input name="commit" value="SIGN UP" type="submit" id="submit" class="signin-submit">
+        </form>
+
+        <h3 id="error" style="color:white;"></h1>
+      </center>
+
+  </div>
+
+  <script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady(){
+
+      function validEmail(email) {
+        var reg = /([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i
+        return reg.test(email);
+      }
+
+      function validPasswordLength(password){
+        return (password.length > 5)
+      }
+
+      function validPasswordConf(password, passwordConfirmation){
+        return (password == passwordConfirmation )
+      }
+
+      function validNames(){
+        return ($('#first-name').val().length >= 2 && $('#last-name').val().length >= 2)
+      }
+
+      $("#submit").on("click", function(e){
+        e.preventDefault();
+        if (!(validEmail($('#email').val()))) {
+          $("#error").html("invalid email")
+        } else if (!(validPasswordLength($('#password').val()))) {
+          $("#error").html("invalid password : passwords must be at least 6 characters")
+        } else if (!(validNames())) {
+          $("#error").html("names must be at least two characters")
+        } else if (!(validPasswordConf($('#password').val(), $('#password-confirmation').val()))) {
+          $("#error").html("your password doesn't match your password confirmation")
+        } else {
+          register({
+            firstName: $('#first-name').val(),
+            lastName: $('#last-name').val(),
+            email: $('#email').val(),
+            password: $('#password').val(), 
+            passwordConfirmation: $('#password-confirmation').val()
+          })
+        }
+      })
+
+    }
+  </script>
+    
+    
+</body>
+</html>

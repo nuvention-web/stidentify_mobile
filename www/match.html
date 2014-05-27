@@ -1,0 +1,182 @@
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <title>STIdentify</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <!-- <link rel="stylesheet" href="/vendor/ionic/css/ionic.css" /> -->
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+  <script src="/javascripts/console.log.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <script src="/javascripts/application.js"></script>
+  <script src="/javascripts/api.js"></script>
+  <script src="/javascripts/barcodescanner.js"></script>
+</head>
+<body class="compare-view">
+
+  <div class="navbar" style="width:100%;padding:10px 0px!important;background-color:#B61F1F;z-index:999">
+    <a style="font-size:30px;color:white;width:30%;font-weight:700;text-decoration:none;margin-left:10px !important" id="drawer-button">&#9776;</a>
+    <span style="color:white;float:right;font-size:30px;margin-right:10px;position:relative;top:5.5px;font-weight:300">STIdentify</span>
+  </div>
+
+  <div class="match-view-content" style="padding:10px;">
+
+    <center><h2>Your STId:</h2></center>
+
+    <div class="qr-code"></div>
+
+    <center>
+
+      <button id="barcode" class="compare-submit">Scan STID</button>
+
+    </center>
+
+    <div id="menu" style='display:none;z-index:998;background-color:#B61F1F;color:white;font-size:24px;font-weight:300;position:fixed;top:64px;left:0;width:100%; solid;text-align:center'>
+      <div style='border-bottom:1px solid white;border-top:1px solid white;padding: 10px 0' id="compare-link">Compare</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="add-results-link">Add Results</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="edit-link">Settings</div>
+      <div style='padding: 10px 0' id="logout-link">Logout</div>
+    </div>
+
+
+
+  </div>
+
+  <script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady(){
+
+      var encodedData = window.location.search.split("=")[1];
+      var data = JSON.parse(decodeURIComponent(encodedData));
+
+      $("#barcode").on("click", function(){
+        cordova.plugins.barcodeScanner.scan(
+          function (result) {
+              var status = compare({access_token: access_token, stid: result.text});
+
+              if (status == "match"){
+                window.location.href = "http://localhost/matchview.html?data=" + encodedData;
+              } else if (status == "caution") {
+                window.location.href = "http://localhost/cautionview.html?data=" + encodedData;
+              } else if (status == "nonmatch") {
+                window.location.href = "http://localhost/nonmatch.html?data=" + encodedData;;
+              } else {
+                alert("that's not a valid STID!")
+              }
+          }, 
+          function (error) {
+              alert("Scanning failed: " + error);
+          }
+        );
+      });
+
+
+      window.addEventListener("message", function(msg) {
+        if (msg.data.selection == "logout") {
+          logout({access_token: data["access_token"]});
+
+          steroids.layers.popAll();
+          window.location.href = ("http://localhost/index.html");
+        } else {
+          window.location.href = ("http://localhost/" + msg.data.selection + ".html?data=" + encodedData)
+        }
+      });
+
+      var drawerView = new steroids.views.WebView({ 
+        location: "http://localhost/drawer.html",
+        id: "drawer"
+      });
+
+      // steroids.drawers.enableGesture(drawerView)
+
+      function updateDrawer() {
+        steroids.drawers.update({
+          left: drawerView,
+          options: {
+            showShadow: false
+          }          
+        });
+      }
+
+      // updateDrawer();
+
+
+      $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
+
+      $("#drawer-button").on("click", function(){
+        // steroids.drawers.hide();
+        // steroids.drawers.show();
+        // $("body").append("")
+        if ($("#menu").is(":hidden")){
+          $("#menu").slideDown(250);
+        } else {
+          $("#menu").slideUp(250);
+        }
+      });
+
+      $("#compare-link").on("click", function(){
+        window.location.href = ("http://localhost/match.html?data=" + encodedData)
+      })
+
+      $("#add-results-link").on("click", function(){
+        data = currentResults({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/add_results.html?data=" + encodeParams(data));
+      })
+
+      $("#edit-link").on("click", function(){
+        data = getInfo({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/edit.html?data=" + encodeParams(data));
+      })
+
+      $("#logout-link").on("click", function(){
+        logout({access_token: data["access_token"]});
+        steroids.layers.popAll();
+        window.location.href = ("http://localhost/index.html");
+      })
+      
+      $(".link-to-results").attr("href", "http://localhost/add_results.html?data=" + encodedData);
+
+      
+      var access_token = data["access_token"];
+
+      $('h1').html("Welcome back " + data["first_name"] + "!");
+
+    }
+
+
+
+    // function logout() {
+
+    //   var drawerView = new steroids.views.WebView({ 
+    //     location: "http://localhost/drawer.html",
+    //     id: "drawer"
+    //   });
+
+    //   steroids.drawers.update({
+    //     left: drawerView,
+    //     options: {
+    //       showShadow: false,
+    //       openGestures: ["None"],
+    //       closeGestures: ["None"]
+    //     }          
+    //   });
+      
+    //   steroids.layers.popAll();
+
+    //   // steroids.view.navigationBar.hide();
+    // }
+  
+  </script>
+    
+    
+</body>
+</html>

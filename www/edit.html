@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <title>My Steroids App</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+  <script src="/javascripts/console.log.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <script src="/javascripts/application.js"></script>
+  <script src="/javascripts/api.js"></script>
+</head>
+<body class="compare-view" style="background-color:#B61F1F">
+
+  <div class="navbar" style="width:100%;padding:10px 0px!important;background-color:#B61F1F">
+    <a style="font-size:30px;color:white;width:30%;font-weight:700;text-decoration:none;margin-left:10px !important" id="drawer-button">&#9776;</a>
+    <span style="color:white;float:right;font-size:30px;margin-right:10px;position:relative;top:5.5px;font-weight:300">STIdentify</span>
+  </div>
+
+    <div class="compare-view-content" style="">
+      <center>
+        <h1 style="color:white;font-family:'Roboto',sans-serif;font-weight:300;position:relative;bottom:10px">Settings</h1>
+
+        <form>
+          <input name="first-name" id="first-name" placeholder="first name" type="text" autocorrect="off">
+          <input name="last-name" id="last-name" placeholder="last name" type="text" autocorrect="off">
+          <input name="email" id="email" placeholder="email address" type="email" autocorrect="off" autocapitalize="off">
+          <input name="password" id="password" placeholder="password" type="password">
+          <input name="password-confirmation" id="password-confirmation" placeholder="confirm password" type="password">
+          <input name="commit" value="UPDATE" type="submit" id="submit" class="signin-submit">
+        </form>
+
+        <h3 id="error" style="color:white;"></h1>
+      </center>
+
+    <div id="menu" style='display:none;z-index:998;background-color:#B61F1F;color:white;font-size:24px;font-weight:300;position:fixed;top:64px;left:0;width:100%; solid;text-align:center'>
+      <div style='border-bottom:1px solid white;border-top:1px solid white;padding: 10px 0' id="compare-link">Compare</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="add-results-link">Add Results</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="edit-link">Settings</div>
+      <div style='padding: 10px 0' id="logout-link">Logout</div>
+    </div>
+
+</div>
+
+  <script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady(){
+
+      var encodedData = window.location.search.split("=")[1];
+      var data = JSON.parse(decodeURIComponent(encodedData));
+
+      $("#first-name").val(data["first_name"]);
+      $("#last-name").val(data["last_name"]);
+      $("#email").val(data["email"]);
+      $("#password").val("xxxxxxxx");
+      $("#password-confirmation").val("xxxxxxxx");
+
+      $(".link-to-match").attr("href", "http://localhost/match.html?data=" + encodedData);
+
+      function validEmail(email) {
+        var reg = /([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/i
+        return reg.test(email);
+      }
+
+      function validPasswordLength(password){
+        return (password.length > 5)
+      }
+
+      function validPasswordConf(password, passwordConfirmation){
+        return (password == passwordConfirmation )
+      }
+
+      function validNames(){
+        return ($('#first-name').val().length >= 2 && $('#last-name').val().length >= 2)
+      }
+
+      $("#submit").on("click", function(e){
+        e.preventDefault();
+        if (!(validEmail($('#email').val()))) {
+          $("#error").html("invalid email")
+        } else if (!(validPasswordLength($('#password').val()))) {
+          $("#error").html("invalid password : passwords must be at least 6 characters")
+        } else if (!(validNames())) {
+          $("#error").html("names must be at least two characters")
+        } else if (!(validPasswordConf($('#password').val(), $('#password-confirmation').val()))) {
+          $("#error").html("your password doesn't match your password confirmation")
+        } else {
+          var response = updateInfo({
+            access_token: data["access_token"],
+            firstName: $('#first-name').val(),
+            lastName: $('#last-name').val(),
+            email: $('#email').val(),
+            password: $('#password').val(), 
+            passwordConfirmation: $('#password-confirmation').val()
+          });
+
+          if (response == "success") {
+
+            navigator.notification.alert(
+              'Your profile has been updated!',  // message
+              function(){ "http://localhost/match.html?data=" + encodedData  },         // callback
+              'Success',            // title
+              'Done'                  // buttonName
+            );
+          } else {
+            navigator.notification.alert(
+              'There was an error. Please try again.',  // message
+              function(){},         // callback
+              'Error',            // title
+              'Done'                  // buttonName
+            );
+          }
+        }
+      })
+
+      window.addEventListener("message", function(msg) {
+        if (msg.data.selection == "logout") {
+          logout({access_token: data["access_token"]});
+          steroids.layers.popAll();
+          window.location.href = ("http://localhost/index.html");
+        } else {
+          window.location.href = ("http://localhost/" + msg.data.selection + ".html?data=" + encodedData)
+        }
+      });
+
+       $("#drawer-button").on("click", function(){
+        // steroids.drawers.hide();
+        // steroids.drawers.show();
+        // $("body").append("")
+        if ($("#menu").is(":hidden")){
+          $("#menu").slideDown(250);
+        } else {
+          $("#menu").slideUp(250);
+        }
+      });
+
+      $("#compare-link").on("click", function(){
+        window.location.href = ("http://localhost/match.html?data=" + encodedData)
+      })
+
+      $("#add-results-link").on("click", function(){
+        data = currentResults({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/add_results.html?data=" + encodeParams(data));
+      })
+
+      $("#edit-link").on("click", function(){
+        data = getInfo({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/edit.html?data=" + encodeParams(data));
+      })
+
+      $("#logout-link").on("click", function(){
+        logout({access_token: data["access_token"]});
+        steroids.layers.popAll();
+        window.location.href = ("http://localhost/index.html");
+      })
+
+
+    }
+  
+  </script>
+    
+    
+</body>
+</html>
