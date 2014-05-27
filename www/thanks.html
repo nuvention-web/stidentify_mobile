@@ -36,6 +36,13 @@
 
       </center>
 
+    <div id="menu" style='display:none;z-index:998;background-color:#B61F1F;color:white;font-size:24px;font-weight:300;position:fixed;top:64px;left:0;width:100%; solid;text-align:center'>
+    <div style='border-bottom:1px solid white;border-top:1px solid white;padding: 10px 0' id="compare-link">Compare</div>
+    <div style='border-bottom:1px solid white;padding: 10px 0' id="add-results-link">Add Results</div>
+    <div style='border-bottom:1px solid white;padding: 10px 0' id="edit-link">Settings</div>
+    <div style='padding: 10px 0' id="logout-link">Logout</div>
+    </div>
+
   </div>
 
   <script>
@@ -57,50 +64,75 @@
         }
       });
 
-       d = new Date();
+      //  d = new Date();
 
-      var drawerView = new steroids.views.WebView( { 
-        location: "http://localhost/drawer.html", 
-        id: (d.getMinutes().toString() + d.getSeconds().toString() + d.getMilliseconds().toString() )
+      // var drawerView = new steroids.views.WebView( { 
+      //   location: "http://localhost/drawer.html", 
+      //   id: (d.getMinutes().toString() + d.getSeconds().toString() + d.getMilliseconds().toString() )
 
-       });
+      //  });
 
-      var myAnimation = new steroids.Animation({
-        transition: "slideFromLeft",
-        duration: 0.7,
-        curve: "linear"
-      });
+      // var myAnimation = new steroids.Animation({
+      //   transition: "slideFromLeft",
+      //   duration: 0.7,
+      //   curve: "linear"
+      // });
 
       
-      function showDrawer() {
-        steroids.drawers.show( {
-          view: drawerView,
-          edge: steroids.screen.edges.LEFT,
-          keepLoading: true,
-          widthOfDrawerInPixels: 400,
-          widthOfLayerInPixels: 75,
-          animation: myAnimation
-        }, {
-          onFailure: function(error) {
-            alert("Could not show the drawer: " + error.errorDescription);
-          }
-        });
-      };
+      // function showDrawer() {
+      //   steroids.drawers.show( {
+      //     view: drawerView,
+      //     edge: steroids.screen.edges.LEFT,
+      //     keepLoading: true,
+      //     widthOfDrawerInPixels: 400,
+      //     widthOfLayerInPixels: 75,
+      //     animation: myAnimation
+      //   }, {
+      //     onFailure: function(error) {
+      //       alert("Could not show the drawer: " + error.errorDescription);
+      //     }
+      //   });
+      // };
 
-      drawerView.preload({},{
-        onSuccess: initGesture
+      // drawerView.preload({},{
+      //   onSuccess: initGesture
+      // });
+
+      // function initGesture() {
+      //   steroids.drawers.enableGesture(drawerView);
+      // }
+
+
+       $("#drawer-button").on("click", function(){
+        // steroids.drawers.hide();
+        // steroids.drawers.show();
+        // $("body").append("")
+        if ($("#menu").is(":hidden")){
+          $("#menu").slideDown(250);
+        } else {
+          $("#menu").slideUp(250);
+        }
       });
 
-      function initGesture() {
-        steroids.drawers.enableGesture(drawerView);
-      }
-
-
-      $("#drawer-button").on("click", function(){ 
-        steroids.drawers.hideAll();
-        showDrawer();
+      $("#compare-link").on("click", function(){
+        window.location.href = ("http://localhost/match.html?data=" + encodedData)
       })
 
+      $("#add-results-link").on("click", function(){
+        data = currentResults({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/add_results.html?data=" + encodeParams(data));
+      })
+
+      $("#edit-link").on("click", function(){
+        data = getInfo({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/edit.html?data=" + encodeParams(data));
+      })
+
+      $("#logout-link").on("click", function(){
+        logout({access_token: data["access_token"]});
+        steroids.layers.popAll();
+        window.location.href = ("http://localhost/index.html");
+      })
 
     }
 

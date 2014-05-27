@@ -5,6 +5,7 @@
   <title>STIdentify</title>
 
   <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <!-- <link rel="stylesheet" href="/vendor/ionic/css/ionic.css" /> -->
   <link rel="stylesheet" href="/stylesheets/application.css" />
 
   <script src="/javascripts/onerror.js"></script>
@@ -21,7 +22,7 @@
 </head>
 <body class="compare-view">
 
-  <div class="navbar" style="width:100%;padding:10px 0px!important;background-color:#B61F1F">
+  <div class="navbar" style="width:100%;padding:10px 0px!important;background-color:#B61F1F;z-index:999">
     <a style="font-size:30px;color:white;width:30%;font-weight:700;text-decoration:none;margin-left:10px !important" id="drawer-button">&#9776;</a>
     <span style="color:white;float:right;font-size:30px;margin-right:10px;position:relative;top:5.5px;font-weight:300">STIdentify</span>
   </div>
@@ -37,6 +38,13 @@
       <button id="barcode" class="compare-submit">Scan STID</button>
 
     </center>
+
+    <div id="menu" style='display:none;z-index:998;background-color:#B61F1F;color:white;font-size:24px;font-weight:300;position:fixed;top:64px;left:0;width:100%; solid;text-align:center'>
+      <div style='border-bottom:1px solid white;border-top:1px solid white;padding: 10px 0' id="compare-link">Compare</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="add-results-link">Add Results</div>
+      <div style='border-bottom:1px solid white;padding: 10px 0' id="edit-link">Settings</div>
+      <div style='padding: 10px 0' id="logout-link">Logout</div>
+    </div>
 
 
 
@@ -99,15 +107,40 @@
         });
       }
 
-      updateDrawer();
+      // updateDrawer();
 
 
       $(".qr-code").html("<center><img src=\"https://api.qrserver.com/v1/create-qr-code/?data="+ data["stid"] +"&amp;size=200x200\" /></center>");
 
       $("#drawer-button").on("click", function(){
-        steroids.drawers.hide();
-        steroids.drawers.show();
+        // steroids.drawers.hide();
+        // steroids.drawers.show();
+        // $("body").append("")
+        if ($("#menu").is(":hidden")){
+          $("#menu").slideDown(250);
+        } else {
+          $("#menu").slideUp(250);
+        }
+      });
 
+      $("#compare-link").on("click", function(){
+        window.location.href = ("http://localhost/match.html?data=" + encodedData)
+      })
+
+      $("#add-results-link").on("click", function(){
+        data = currentResults({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/add_results.html?data=" + encodeParams(data));
+      })
+
+      $("#edit-link").on("click", function(){
+        data = getInfo({access_token: data["access_token"]});
+        window.location.href = ("http://localhost/edit.html?data=" + encodeParams(data));
+      })
+
+      $("#logout-link").on("click", function(){
+        logout({access_token: data["access_token"]});
+        steroids.layers.popAll();
+        window.location.href = ("http://localhost/index.html");
       })
       
       $(".link-to-results").attr("href", "http://localhost/add_results.html?data=" + encodedData);

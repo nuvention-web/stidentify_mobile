@@ -17,10 +17,17 @@ function genericAPICall(options, path, method, callback) {
       withCredentials: true
     },
     success: function(data) {
+      // alert(JSON.stringify(data))
       if (data["response"] == "success") {
         response =  callback(data);
+        // alert(JSON.stringify(response));
       } else {
-        alert("Try again!");
+        navigator.notification.alert(
+          'There was an error. Please try again.',  // message
+          function(){},         // callback
+          'Error',            // title
+          'Done'                  // buttonName
+        );
       }
     }
   })
@@ -57,15 +64,21 @@ function register(options){
 //   passwordConfirmation: [insert]
 // })
 
+function getInfo(options){
+  return genericAPICall(options, "users/info", "POST", function(data){ return data })
+}
+
+function updateInfo(options){
+  return genericAPICall(options, "users/update_info", "POST", function(data){ return data["response"]} )
+}
 
 function testResults(options) {
-  return genericAPICall(options, "users/tests", "POST", function(data) { return data["response"]} )
+  return genericAPICall(options, "users/add_results", "POST", function(data) { return data["response"]} )
 }
 
-function logout(options) {
-  return genericAPICall(options, "sessions/logout", "POST", function(data) { return data["response"]} )
+function currentResults(options){
+  return genericAPICall(options, "users/current_results", "POST", function(data){ return data })
 }
-
 
 //example:
 // testResults({
@@ -78,6 +91,10 @@ function logout(options) {
 //   hivResult: [true or false] ,
 //   syphilisResult: [true or false]
 // })
+
+function logout(options) {
+  return genericAPICall(options, "sessions/logout", "POST", function(data) { return data["response"]} )
+}
 
 function encodeParams(data){
   return encodeURIComponent(JSON.stringify(data));
