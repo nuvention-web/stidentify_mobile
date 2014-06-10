@@ -70,7 +70,12 @@
               } else if (status == "nonmatch") {
                 window.location.href = "http://localhost/nonmatch.html?data=" + encodedData;;
               } else {
-                alert("that's not a valid STID!")
+                navigator.notification.alert(
+                  'There was an error. Please try again.',  // message
+                  function(){},         // callback
+                  'Error',            // title
+                  'Done'                  // buttonName
+                );
               }
           }, 
           function (error) {
@@ -139,7 +144,7 @@
 
       $("#logout-link").on("click", function(){
         logout({access_token: data["access_token"]});
-        steroids.layers.popAll();
+        // steroids.layers.popAll();
         window.location.href = ("http://localhost/index.html");
       })
       
